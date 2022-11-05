@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   imgContainer: {
     marginTop: 50,
-    marginBottom: 1
+    marginBottom: 1,
   },
   title: {
     fontSize: 60,

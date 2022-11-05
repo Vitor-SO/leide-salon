@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Text,
   TouchableOpacity,
-  View
 } from 'react-native';
 
 interface Props{
@@ -25,12 +24,15 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   button: {
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#FF69B4",
     padding: 10,
-    borderRadius: 15
+    borderRadius: 15,
+    width: 320,
+    height: 60
   },
   text: {
-    fontSize: 16,
+    fontSize: 24,
     fontWeight: "bold",
     color: "#ffff"
   }
