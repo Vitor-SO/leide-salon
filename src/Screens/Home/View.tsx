@@ -4,31 +4,39 @@ import {
   FlatList,
   Image,
   SafeAreaView,
+  ScrollView,
   Text,
   View
 } from 'react-native';
+import { Button } from '../../Components/Button/indext';
 import HeadingServicesCard from '../../Components/HeadingServicesCard';
-import { data } from './model';
+import HomeUserServicesCard from '../../Components/HomeUserServicesCard';
+import { HeadingServicesHomeList,UserServiceOrderList } from './model';
 
 import { styles } from './styles';
 
 export function Home(){
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView 
+    nestedScrollEnabled={true}
+    showsVerticalScrollIndicator={false}
+    style={styles.container}>
+      
       <View style={styles.viewUser}>
         <Image 
-        source={{uri: "../../Assets/Images/womanIcons.png"}}
+        source={require("../../Assets/Images/womanIcon.png")}
         style={styles.icon}
         />
 
-        <Text>
+        <Text style={styles.name}>
           Usúario
         </Text>
       </View>
-      <View>
-        <Text>Nossos Serviços</Text>
+
+      
+        <Text style={styles.textSection}>Nossos Serviços</Text>
         <FlatList
-        data={data}
+        data={HeadingServicesHomeList}
         keyExtractor={(item) => item?.id}
         renderItem={({item})=>(
           <HeadingServicesCard 
@@ -39,7 +47,30 @@ export function Home(){
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{paddingLeft:32, paddingRight: 64} }
       />
+      
+
+        <Text style={styles.textSection}>Seus Serviços</Text>
+        {UserServiceOrderList.length > 0 ? <FlatList
+        data={UserServiceOrderList}
+        keyExtractor={(item) => item?.id}
+        renderItem={({item})=>(
+          <HomeUserServicesCard
+          data={item}
+          />
+        )}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{paddingLeft:32, paddingRight: 64} }
+        maxToRenderPerBatch={3}
+      />
+      :
+      <View style={styles.viewEmptyOrders}>
+        <Text style={styles.emptyOrders}>Você não agendou nenhum serviço ainda.</Text>
       </View>
-    </SafeAreaView>
+      }
+
+      <View style={styles.buttonView}>
+        <Button title='Agendar Serviço'/>
+      </View>
+    </ScrollView>
   );
 }

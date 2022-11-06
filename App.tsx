@@ -7,6 +7,7 @@ import Register from './src/Screens/Register/View';
 import Login from './src/Screens/Login/View';
 import Routes from './src/Navigation/Routes';
 import { Home } from './src/Screens/Home/View';
+import { Services } from './src/Screens/Services/View';
 
 export default function App() {
 
@@ -18,7 +19,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      {fontsLoaded ? <Home/> : <Loading/>}
+      {fontsLoaded ? <Services/> : <Loading/>}
       
     </View>
   );

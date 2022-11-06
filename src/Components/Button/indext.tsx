@@ -7,11 +7,17 @@ import {
 
 interface Props{
   title: string;
+  size?: {width: number, height: number};
+  color?: string;
+
 }
 
-export function Button({title, ...rest}:Props){
+export function Button({title,size,color, ...rest}:Props){
   return (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+         style={size && color ? {width: `${size.width}`, height: `${size.height}`} : styles.button}
+         {...rest}
+         >
         <Text style={styles.text}>
           {title}
         </Text>
