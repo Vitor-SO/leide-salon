@@ -11,11 +11,12 @@ import {
 import { Button } from '../../Components/Button/indext';
 import HeadingServicesCard from '../../Components/HeadingServicesCard';
 import HomeUserServicesCard from '../../Components/HomeUserServicesCard';
-import { HeadingServicesHomeList,UserServiceOrderList } from './model';
 
 import { styles } from './styles';
+import useHomeViewModel from './View.model';
 
 export function Home(){
+  const {Navigation,HeadingServicesHomeList,UserServiceOrderList} = useHomeViewModel()
   return (
     <ScrollView 
     nestedScrollEnabled={true}
@@ -69,7 +70,9 @@ export function Home(){
       }
 
       <View style={styles.buttonView}>
-        <Button title='Agendar Serviço'/>
+        <Button title='Agendar Serviço'
+        onPress={Navigation}
+        />
       </View>
     </ScrollView>
   );

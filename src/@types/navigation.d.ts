@@ -4,6 +4,9 @@ export declare global{
       inital: undefined;
       register: undefined;
       login: undefined;
+      home: undefined;
+      services: undefined;
+      serviceOrders: undefined;
     }
   }
 }

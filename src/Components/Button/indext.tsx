@@ -3,9 +3,10 @@ import React from 'react';
 import {
   Text,
   TouchableOpacity,
+  TouchableOpacityProps,
 } from 'react-native';
 
-interface Props{
+interface Props extends TouchableOpacityProps{
   title: string;
   size?: {width: number, height: number};
   color?: string;

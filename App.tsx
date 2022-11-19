@@ -8,6 +8,7 @@ import Login from './src/Screens/Login/View';
 import Routes from './src/Navigation/Routes';
 import { Home } from './src/Screens/Home/View';
 import { Services } from './src/Screens/Services/View';
+import ServicesViewProvider from './src/Contexts/ServicesView';
 
 export default function App() {
 
@@ -17,11 +18,13 @@ export default function App() {
   })
 
   return (
-    <View style={styles.container}>
+    < >
       <StatusBar style="auto" />
-      {fontsLoaded ? <Services/> : <Loading/>}
+      <ServicesViewProvider>
+      {fontsLoaded ? <Routes/> : <Loading/>}
+      </ServicesViewProvider>
       
-    </View>
+    </>
   );
 }
 
