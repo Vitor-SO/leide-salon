@@ -18,13 +18,14 @@ import { useRoute } from '@react-navigation/native';
 import { SpecificService } from '../../@types/navigation';
 import TextAreaComponent from '../../Components/TextArea';
 import {NativeBaseProvider,Center} from 'native-base'
+import {format} from 'date-fns'
 
 function ServiceOrders() {
   const { dataServiceOrders, onChangeDate, onChangeTime, showDatepicker,
-    date, show, showTimepicker, mode, time } = useServicesOrdersViewModel()
+    date, show, showTimepicker, mode, time} = useServicesOrdersViewModel()
   const route = useRoute()
   const specificService = route.params as SpecificService
-
+  
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.textScreen}>Marcar Serviço</Text>
@@ -67,7 +68,7 @@ function ServiceOrders() {
         <View style={styles.viewSelectData}>
           <Button width='60%' height={60} onPress={showDatepicker} title="Data" />
           <View style={styles.viewSelectedData}>
-            <Text style={styles.selectedData}>{date.toLocaleDateString('pt-BR')}</Text>
+            <Text style={styles.selectedData}>{format(date,'dd/MM/yyyy')}</Text>
           </View>
         </View>
         {(show && mode === "date") && (
@@ -85,7 +86,7 @@ function ServiceOrders() {
         <View style={styles.viewSelectData}>
           <Button width='60%' height={60} onPress={showTimepicker} title="Horário" />
           <View style={styles.viewSelectedData}>
-            <Text style={styles.selectedData}>{time.toLocaleTimeString('pt-BR')}</Text>
+            <Text style={styles.selectedData}>{time.toLocaleTimeString("pt-BR")}</Text>
           </View>
         </View>
         {(show && mode === "time") && (

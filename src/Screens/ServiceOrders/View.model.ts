@@ -1,16 +1,15 @@
 import { IServiceOrdersProps } from './model';
 import { ServicesViewContext } from './../../Contexts/ServicesView';
-import { SetStateAction, useContext,useState} from "react";
+import { useContext,useState} from "react";
 import { Platform } from 'react-native';
-import DateTimePicker,{AndroidNativeProps, IOSNativeProps} from '@react-native-community/datetimepicker';
+import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
+// import { parseISO } from 'date-fns'; 
+// import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
 
-
-interface IProps extends AndroidNativeProps{
-  mode: "date" | "time";
-  value: Date
-}
 const useServicesOrdersViewModel = () =>{
+
   const {modalService} = useContext(ServicesViewContext);
+
   const dataServiceOrders: IServiceOrdersProps ={
     title: modalService[0]?.title,
     img: modalService[0]?.img,
@@ -25,30 +24,16 @@ const useServicesOrdersViewModel = () =>{
   const [mode, setMode] = useState<string>();
   const [show, setShow] = useState(false);
   
-  function HourUTC(time: Date){
-    
-    const hoursUTC = time.toUTCString().split(' ')[4]
-
-  const hour = parseInt(hoursUTC.split(':')[0])
-  
-  const min = hoursUTC.split(':')[1]
-  const sec = hoursUTC.split(':')[2]
-
-  const newHour = hour - 3
-    let date =`${newHour.toString()}:${min}:${sec}`
-    console.log(date);
-    
-    // setTime(date)
-  }
 
   
-  const onChangeDate = (event: any, selectedDate: any) => {
-    const currentDate = selectedDate;
+  const onChangeDate = (event: DateTimePickerEvent, selectedDate: any) => {
+    const currentDate = selectedDate
     setShow(false);
     setDate(currentDate);
   };
 
   const onChangeTime = (event: any, selectedTime: any) => {
+    
     setShow(false);
     setTime(selectedTime)
   };
@@ -72,6 +57,20 @@ const useServicesOrdersViewModel = () =>{
     showMode('time');
   };
 
+  
+  // const setTimeUTC = (time: Date): string => {
+  //   const currentTime = time.toISOString().split('T')[0] + ' ' + time.toLocaleTimeString()
+  //   const parsedDate = parseISO(currentTime);
+    
+  //   const znDate = zonedTimeToUtc(time, '-3GMT');
+  //   console.log(znDate);
+    
+
+  //   // console.log(znDate.toLocaleTimeString("pt-BR"));
+    
+  //   // return znDate.toLocaleTimeString("pt-BR")
+    
+  // };
 
 
   return{
@@ -83,7 +82,8 @@ const useServicesOrdersViewModel = () =>{
     date,
     show,
     time,
-    mode
+    mode,
+    // setTimeUTC
 
   }
 }
