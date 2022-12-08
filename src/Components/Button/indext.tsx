@@ -8,15 +8,17 @@ import {
 
 interface Props extends TouchableOpacityProps{
   title: string;
-  size?: {width: number, height: number};
+  width?: number | string;
+  height?: number | string;
   color?: string;
 
 }
 
-export function Button({title,size,color, ...rest}:Props){
+export function Button({title,width,height,color, ...rest}:Props){
+
   return (
         <TouchableOpacity
-         style={size && color ? {width: `${size.width}`, height: `${size.height}`} : styles.button}
+         style={ (width && height) ? [{width: width, height: height},styles.buttonProps]: styles.button}
          {...rest}
          >
         <Text style={styles.text}>
@@ -28,6 +30,7 @@ export function Button({title,size,color, ...rest}:Props){
 
 import { StyleSheet } from 'react-native';
 
+
 export const styles = StyleSheet.create({
   button: {
     alignItems: "center",
@@ -37,6 +40,13 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     width: 320,
     height: 60
+  },
+  buttonProps:{
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FF69B4",
+    padding: 10,
+    borderRadius: 15,
   },
   text: {
     fontSize: 24,

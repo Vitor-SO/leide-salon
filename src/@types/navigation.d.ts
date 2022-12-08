@@ -1,3 +1,11 @@
+export interface SpecificService{
+  isSpecific?: Boolean;
+}
+
+export interface ServicesParams{
+  title: string;
+}
+
 export declare global{
   namespace ReactNavigation{
     interface RootParamList{
@@ -5,8 +13,8 @@ export declare global{
       register: undefined;
       login: undefined;
       home: undefined;
-      services: undefined;
-      serviceOrders: undefined;
+      services: ServicesParams;
+      serviceOrders: SpecificService;
     }
   }
 }

@@ -19,13 +19,17 @@ import { Modalize } from 'react-native-modalize';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { THEME } from '../../Theme';
 import { Button } from '../../Components/Button/indext';
+import { useRoute } from '@react-navigation/native';
+import { ServicesParams } from '../../@types/navigation';
 
 
 export function Services(){
   const {titleSection,servicesList,
     newDetailsCard,modalVisible,setModalVisible,
-    modalService,Navigation} = useServicesViewModel()
+    modalService,Navigation,handleServiceList} = useServicesViewModel()
   const modalizeRef = useRef<Modalize>(null);
+  const route = useRoute()
+  const servicesParams = route.params as ServicesParams
 
 
   useEffect(() => {
@@ -33,6 +37,12 @@ export function Services(){
       modalizeRef.current?.open()
     }
   }, [modalVisible])
+
+  useEffect(() => {
+    if(servicesParams != undefined){
+      handleServiceList(servicesParams?.title)
+    }
+  },[servicesParams])
   
   
   return (
@@ -62,7 +72,7 @@ export function Services(){
         </View>
       
       <View style={styles.serviceDetailsContainer}>
-      <Text style={styles.titleSection}>{titleSection !== '' ? titleSection : 'cabelo'}</Text>
+      <Text style={styles.titleSection}>{titleSection !== '' ? titleSection : 'Corte de Cabelo'}</Text>
         
       
         <FlatList

@@ -26,7 +26,7 @@ export const servicesList= [
   {
     id: '1',
     icon: '<Entypo name="scissors" size={24} color="black" />',
-    title: 'Cabelo'
+    title: 'Corte de Cabelo'
   },
   {
     id: '2',
@@ -70,7 +70,7 @@ export const serviceDetails =
     
       {
         id: '1',
-        type: 'Cabelo',
+        type: 'Corte de Cabelo',
         title: 'Chandelier layers',
         img: 'https://media.glamour.com/photos/626996390aca11e120fa967a/1:1/w_1439,h_1439,c_limit/Curtain%20Bangs.png',
         desc:
@@ -81,7 +81,7 @@ export const serviceDetails =
       },
       {
         id: '2',
-        type: 'Cabelo',
+        type: 'Corte de Cabelo',
         title: 'Strong bob',
         img: 'https://i.pinimg.com/originals/23/95/e4/2395e4453280f082e107fce3a3ec52f2.jpg',
         desc: 
@@ -93,7 +93,7 @@ export const serviceDetails =
       },
       {
         id: '3',
-        type: 'Cabelo',
+        type: 'Corte de Cabelo',
         title: 'Strong bob',
         img: 'https://i.pinimg.com/originals/23/95/e4/2395e4453280f082e107fce3a3ec52f2.jpg',
         desc: 
@@ -105,7 +105,7 @@ export const serviceDetails =
       },
       {
         id: '4',
-        type: 'Cabelo',
+        type: 'Corte de Cabelo',
         title: 'Strong bob',
         img: 'https://i.pinimg.com/originals/23/95/e4/2395e4453280f082e107fce3a3ec52f2.jpg',
         desc: 
@@ -117,7 +117,7 @@ export const serviceDetails =
       },
       {
         id: '5',
-        type: 'Cabelo',
+        type: 'Corte de Cabelo',
         title: 'Strong bob',
         img: 'https://i.pinimg.com/originals/23/95/e4/2395e4453280f082e107fce3a3ec52f2.jpg',
         desc: 
@@ -139,6 +139,6 @@ export const serviceDetails =
  ]
 
 export const serviceListName = [
-  "Cabelo","Cauterização","Restauração","Hidratação","Tintura","Matização",
+  "Corte de Cabelo","Cauterização","Restauração","Hidratação","Tintura","Matização",
   "Progressiva","Escova"
 ]

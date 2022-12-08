@@ -17,13 +17,13 @@ export default function AppRoutes(){
     />
     <Screen
       name="register" component={Register}
-    /> */}
+    />  */}
 
-    <Screen name="home" component={Home}/>
+     <Screen name="home" component={Home}/>
 
     <Screen name="services" component={Services}/>
 
-    <Screen name="serviceOrders" component={ServiceOrders}/>
+    <Screen name="serviceOrders" component={ServiceOrders}/> 
   </Navigator>
   )
 }

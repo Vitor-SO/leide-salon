@@ -9,7 +9,7 @@ const useServicesViewModel = () =>{
   const navigation = useNavigation()
 
   function Navigation(){
-    navigation.navigate("serviceOrders")
+    navigation.navigate("serviceOrders",{isSpecific: false})
   }
   return{
     titleSection,

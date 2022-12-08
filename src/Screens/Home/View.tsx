@@ -3,7 +3,6 @@ import React from 'react';
 import {
   FlatList,
   Image,
-  SafeAreaView,
   ScrollView,
   Text,
   View
@@ -16,7 +15,7 @@ import { styles } from './styles';
 import useHomeViewModel from './View.model';
 
 export function Home(){
-  const {Navigation,HeadingServicesHomeList,UserServiceOrderList} = useHomeViewModel()
+  const {ButtonNavigation,HeadingServicesHomeList,UserServiceOrderList} = useHomeViewModel()
   return (
     <ScrollView 
     nestedScrollEnabled={true}
@@ -51,7 +50,7 @@ export function Home(){
       
 
         <Text style={styles.textSection}>Seus Serviços</Text>
-        {UserServiceOrderList.length > 0 ? <FlatList
+         <FlatList
         data={UserServiceOrderList}
         keyExtractor={(item) => item?.id}
         renderItem={({item})=>(
@@ -59,19 +58,19 @@ export function Home(){
           data={item}
           />
         )}
-        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{paddingLeft:32, paddingRight: 64} }
         maxToRenderPerBatch={3}
-      />
-      :
-      <View style={styles.viewEmptyOrders}>
+        ListEmptyComponent={
+          <View style={styles.viewEmptyOrders}>
         <Text style={styles.emptyOrders}>Você não agendou nenhum serviço ainda.</Text>
       </View>
-      }
+        }
+      />
 
       <View style={styles.buttonView}>
         <Button title='Agendar Serviço'
-        onPress={Navigation}
+        onPress={ButtonNavigation}
         />
       </View>
     </ScrollView>

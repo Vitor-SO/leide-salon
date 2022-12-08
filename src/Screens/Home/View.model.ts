@@ -1,13 +1,24 @@
 import {useNavigation} from "@react-navigation/native"
 import { HeadingServicesHomeList,UserServiceOrderList } from './model';
+
 const useHomeViewModel = () =>{
   const navigation = useNavigation()
 
-  function Navigation(){
-    navigation.navigate("services")
+  function CardNavigation(title:string){
+
+    if(title === 'Serviço Específico'){
+      navigation.navigate("serviceOrders",{isSpecific: true})
+    }else{
+      navigation.navigate('services',{title})
+    }
+
+  }
+
+  function ButtonNavigation(){
+    navigation.navigate("services",{title: 'Corte de Cabelo'})
   }
   return{
-    Navigation,HeadingServicesHomeList,UserServiceOrderList
+    CardNavigation,ButtonNavigation,HeadingServicesHomeList,UserServiceOrderList
   }
 }
 

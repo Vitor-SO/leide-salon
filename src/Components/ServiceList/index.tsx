@@ -21,10 +21,10 @@ interface IProps{
 }
 
 import { Entypo } from '@expo/vector-icons';
-import  useServicesViewModel from '../../Screens/Services/View.model';
 import { ServicesViewContext } from '../../Contexts/ServicesView';
 export function ServiceList({data}:IProps){
   const {handleServiceList} = useContext(ServicesViewContext)
+  
   return (
     <View >
       <TouchableOpacity
@@ -34,7 +34,11 @@ export function ServiceList({data}:IProps){
       <View style={styles.iconView}>
       <Entypo name="scissors" size={40} color="black" />
       </View>
-      <Text style={styles.title}>{data.title}</Text>
+      <Text 
+      numberOfLines={1}
+       style={styles.title}>{data.title}
+       
+       </Text>
       </TouchableOpacity>
 
     </View>

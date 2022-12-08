@@ -6,3 +6,5 @@ export interface IServiceOrdersProps extends IServicesViewProps{
   duration: string;
   price: number;
 }
+
+export const QTPeople= ['1','2','3']

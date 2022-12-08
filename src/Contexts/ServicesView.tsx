@@ -9,7 +9,7 @@ function ServicesViewProvider({children}:any){
     [
       {
         id: '1',
-        type: 'Cabelo',
+        type: 'Corte de Cabelo',
         title: 'Chandelier layers',
         img: 'https://media.glamour.com/photos/626996390aca11e120fa967a/1:1/w_1439,h_1439,c_limit/Curtain%20Bangs.png',
         desc:
@@ -19,7 +19,7 @@ function ServicesViewProvider({children}:any){
       },
       {
         id: '2',
-        type: 'Cabelo',
+        type: 'Corte de Cabelo',
         title: 'Strong bob',
         img: 'https://i.pinimg.com/originals/23/95/e4/2395e4453280f082e107fce3a3ec52f2.jpg',
         desc: 
@@ -33,15 +33,19 @@ function ServicesViewProvider({children}:any){
   )
   
   const [modalService,setModalService] = useState<IServicesViewProps[]>([])
-
   const [modalVisible, setModalVisible] = useState<boolean>(false)
+  
 
   function handleServiceList(title: string){
     
-    setTitleSection(title)
-    const data =serviceDetails.filter(service => service.type === title)
-
-    setNewDetailsCard(data)
+    
+    if(title){
+      setTitleSection(title)
+      const data = serviceDetails.filter(service => service.type === title)
+      setNewDetailsCard(data)
+    }
+    
+    return
   }
 
 
