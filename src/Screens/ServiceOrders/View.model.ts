@@ -1,13 +1,43 @@
 import { IServiceOrdersProps } from './model';
 import { ServicesViewContext } from './../../Contexts/ServicesView';
 import { useContext,useState} from "react";
-import { Platform } from 'react-native';
-import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import FirebaseController from '../../Services/Firebase/firebase.controller';
+import DateFormatter from '../../helpers/date-formater';
+
 // import { parseISO } from 'date-fns'; 
 // import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
 
-const useServicesOrdersViewModel = () =>{
+interface ISpecificService{
+  id?: string;
+  user: string
+  service: string,
+  date: string,
+  time: string,
+  people: number,
+}
 
+interface IClientOrder{
+  id?: string;
+  user: string
+  serviceId: string,
+  service: string,
+  serviceType: string,
+  duration: string,
+  price: number,
+  date: string,
+  time: string,
+  people: number,
+}
+
+interface IClientChoose{
+  date: string;
+  time: string;
+  people: number;
+}
+
+const useServicesOrdersViewModel = () =>{
+  const firebase = FirebaseController()
+  
   const {modalService} = useContext(ServicesViewContext);
 
   const dataServiceOrders: IServiceOrdersProps ={
@@ -17,74 +47,52 @@ const useServicesOrdersViewModel = () =>{
     price: modalService[0]?.price,
     id: '',
     type: modalService[0]?.type
+  } 
+
+  function CreateSpecificService(specificService: ISpecificService):void{
+    const path =`specificService/${specificService.id}`
+    const data ={
+      id: specificService.id,
+      user: specificService.user,
+      service: specificService.service,
+      date: specificService.date,
+      time: specificService.time,
+      people: specificService.people,
+    }
+    
+     firebase.create(path,data)
+    }
+
+  function SpecificServiceByUsername(user: string){
+    const path = 'specificService'
+    
+     firebase.read(path)
   }
 
-  const [date, setDate] = useState(new Date(Date.now()));
-  const [time, setTime] = useState(new Date(Date.now()));
-  const [mode, setMode] = useState<string>();
-  const [show, setShow] = useState(false);
-  
-
-  
-  const onChangeDate = (event: DateTimePickerEvent, selectedDate: any) => {
-    const currentDate = selectedDate
-    setShow(false);
-    setDate(currentDate);
-  };
-
-  const onChangeTime = (event: any, selectedTime: any) => {
-    
-    setShow(false);
-    setTime(selectedTime)
-  };
-
-  const showMode = (mode: string) => {
-    if (Platform.OS === 'android') {
-      setShow(true);
-    }
-    if (Platform.OS === 'ios') {
-      setShow(true);
+  function CreateClientOrder({date,time,people}: IClientChoose ){
+    const path = 'clientOrder'
+    const data: IClientOrder = {
+      user: 'user-aleatorio',
+      serviceId: modalService[0]?.id,
+      service: modalService[0]?.title,
+      serviceType: modalService[0]?.type,
+      duration: modalService[0]?.duration,
+      price: modalService[0]?.price,
+      date: date,
+      time: time,
+      people: people
     }
 
-    setMode(mode);
-  };
-
-  const showDatepicker = () => {
-    showMode('date');
-  };
-
-  const showTimepicker = () => {
-    showMode('time');
-  };
-
-  
-  // const setTimeUTC = (time: Date): string => {
-  //   const currentTime = time.toISOString().split('T')[0] + ' ' + time.toLocaleTimeString()
-  //   const parsedDate = parseISO(currentTime);
+    console.log(data);
     
-  //   const znDate = zonedTimeToUtc(time, '-3GMT');
-  //   console.log(znDate);
-    
-
-  //   // console.log(znDate.toLocaleTimeString("pt-BR"));
-    
-  //   // return znDate.toLocaleTimeString("pt-BR")
-    
-  // };
+  }
 
 
   return{
     dataServiceOrders,
-    onChangeDate,
-    onChangeTime,
-    showDatepicker,
-    showTimepicker,
-    date,
-    show,
-    time,
-    mode,
-    // setTimeUTC
-
+    CreateSpecificService,
+    SpecificServiceByUsername,
+    CreateClientOrder
   }
 }
 

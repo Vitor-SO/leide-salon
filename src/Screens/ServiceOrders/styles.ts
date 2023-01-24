@@ -106,5 +106,16 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 100,
     marginTop: 15
+  },
+  backContainer: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+  },
+  arrow:{
+    paddingTop: 25,
+    marginRight: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });

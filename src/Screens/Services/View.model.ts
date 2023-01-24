@@ -1,28 +1,26 @@
-import { useNavigation } from '@react-navigation/native';
-import { ServicesViewContext } from './../../Contexts/ServicesView';
-import { useContext } from "react";
-import { servicesList, serviceDetails } from './model';
+import FirebaseController from '../../Services/Firebase/firebase.controller';
+
 
 const useServicesViewModel = () =>{
-  const {titleSection,setTitleSection,newDetailsCard,modalService,
-    modalVisible,setModalVisible,handleServiceDetailsCard,handleServiceList} = useContext(ServicesViewContext);
-  const navigation = useNavigation()
+  const firebase = FirebaseController()
 
-  function Navigation(){
-    navigation.navigate("serviceOrders",{isSpecific: false})
+  function GetServices(){
+    const path = 'salon/DetailedServices'
+    
+    return firebase.read(path)
+
   }
+  function GetServicesByRef(idRef: string){
+    const path = `salon/DetailedServices/${idRef}`
+    
+    const data = firebase.read(path)
+    return data
+  }
+
+
   return{
-    titleSection,
-    setTitleSection,
-    servicesList,
-    serviceDetails,
-    newDetailsCard,
-    modalService,
-    modalVisible,
-    setModalVisible,
-    handleServiceDetailsCard,
-    handleServiceList,
-    Navigation
+    GetServices,
+    GetServicesByRef
   }
 }
 

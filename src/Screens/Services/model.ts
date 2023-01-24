@@ -2,14 +2,15 @@ import { Entypo } from '@expo/vector-icons';
 
 export interface IServicesView{
   titleSection: string;
-  newDetailsCard: IServicesViewProps[];
+  newDetailedServices: IServicesViewProps[];
   modalService: IServicesViewProps[];
   modalVisible: boolean;
   setTitleSection: React.Dispatch<React.SetStateAction<string>>;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   // setNewDetailsCard: React.Dispatch<React.SetStateAction<IServicesViewProps[]>>
-  handleServiceList: (title: string) => void
-  handleServiceDetailsCard: (title: string) => void
+  handleServiceList: (title: string) => void;
+  handleDetailedServicesCard: (title: string) => void;
+  DataServices: () => void;
 }
 
 export interface IServicesViewProps{
@@ -65,7 +66,7 @@ export const servicesList= [
   },
 ]
 
-export const serviceDetails =
+export const detailedServices =
  [
     
       {
@@ -138,7 +139,25 @@ export const serviceDetails =
       },
  ]
 
-export const serviceListName = [
-  "Corte de Cabelo","Cauterização","Restauração","Hidratação","Tintura","Matização",
-  "Progressiva","Escova"
+export const defaultServicesCard = [
+  {
+    id: "1",
+    type: "Corte de Cabelo",
+    title: "Chandelier layers",
+    img: "https://media.glamour.com/photos/626996390aca11e120fa967a/1:1/w_1439,h_1439,c_limit/Curtain%20Bangs.png",
+    desc: `Chandelier layers are dramatic, bouncy, curly bangs and general layers that typically come with a deep side part. You may also see them described as “curtain bangs,” although curtain bangs are more likely to be a middle part that frames your face equally.`,
+    duration: "15-20",
+    price: 50,
+  },
+  {
+    id: "2",
+    type: "Corte de Cabelo",
+    title: "Strong bob",
+    img: "https://i.pinimg.com/originals/23/95/e4/2395e4453280f082e107fce3a3ec52f2.jpg",
+    desc: `This particular cut is made at jaw-level on both sides of the face.
+   Even though the cut itself is sometimes easier to see on straight hair due to its razor-sharp edge, it can be sported by curly haired people, too.
+    Hair density is the key to rocking the strong bob.`,
+    duration: "20-25",
+    price: 50,
+  },
 ]

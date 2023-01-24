@@ -1,10 +1,13 @@
+import { UserServicesType } from "../Screens/UserServices/model";
+
 export interface SpecificService{
-  isSpecific?: Boolean;
+  isSpecific: boolean;
 }
 
 export interface ServicesParams{
   title: string;
 }
+
 
 export declare global{
   namespace ReactNavigation{
@@ -15,6 +18,7 @@ export declare global{
       home: undefined;
       services: ServicesParams;
       serviceOrders: SpecificService;
+      userServices: UserServicesType;
     }
   }
 }

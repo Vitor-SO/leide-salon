@@ -46,26 +46,60 @@ export const HeadingServicesHomeList = [
   }
 ]
 
+export interface IUserServiceOrderList{
+  id: string;
+  type: string;
+  title: string;
+  imgURL: string;
+  desc: string;
+  price: number;
+  duration: string;
+}
+
 export const UserServiceOrderList =[
   {
     id: '1',
-    imgURL: 'https://info.philippelusi.com/wp-content/uploads/2019/01/Blow-Dry-Desktop.jpg',
+    type: 'Corte de Cabelo',
     title: 'Woman Blunt Cut',
+    imgURL: 'https://info.philippelusi.com/wp-content/uploads/2019/01/Blow-Dry-Desktop.jpg',
+    desc: `This particular cut is made at jaw-level on both sides of the face.
+    Even though the cut itself is sometimes easier to see on straight hair due to its razor-sharp edge, it can be sported by curly haired people, too.
+     Hair density is the key to rocking the strong bob.`,
     price: 50,
-    service: 'Hair Service',
+    duration: "15-20"
   },
   {
     id: '2',
-    imgURL: 'https://mupcity.com.au/wp-content/uploads/2019/08/hands-blow-drying-hair-1024x683.jpg',
+    type: 'Corte de Cabelo',
     title: 'Woman Brush',
+    imgURL: 'https://mupcity.com.au/wp-content/uploads/2019/08/hands-blow-drying-hair-1024x683.jpg',
+    desc: `This particular cut is made at jaw-level on both sides of the face.
+    Even though the cut itself is sometimes easier to see on straight hair due to its razor-sharp edge, it can be sported by curly haired people, too.
+     Hair density is the key to rocking the strong bob.`,
     price: 50,
-    service: 'Hair Service',
+    duration: "15-20"
   },
   {
     id: '3',
-    imgURL: 'https://beautvip.com/wp-content/uploads/2021/05/Relaxamento-para-cabelos-cacheados-pros-e-contras.jpg',
+    type: 'Corte de Cabelo',
     title: 'Woman Cauterization',
+    imgURL: 'https://beautvip.com/wp-content/uploads/2021/05/Relaxamento-para-cabelos-cacheados-pros-e-contras.jpg',
+    desc: `This particular cut is made at jaw-level on both sides of the face.
+    Even though the cut itself is sometimes easier to see on straight hair due to its razor-sharp edge, it can be sported by curly haired people, too.
+     Hair density is the key to rocking the strong bob.`,
     price: 50,
-    service: 'Hair Service',
+    duration: "15-20"
+  },
+  {
+    id: '4',
+    type: 'Corte de Cabelo',
+    title: 'Woman Cauterization',
+    imgURL: 'https://beautvip.com/wp-content/uploads/2021/05/Relaxamento-para-cabelos-cacheados-pros-e-contras.jpg',
+    desc: `This particular cut is made at jaw-level on both sides of the face.
+    Even though the cut itself is sometimes easier to see on straight hair due to its razor-sharp edge, it can be sported by curly haired people, too.
+     Hair density is the key to rocking the strong bob.`,
+    price: 50,
+    duration: "15-20"
   }
+  
 ]

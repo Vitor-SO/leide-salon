@@ -1,18 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import {
-  Image,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
-import { Modalize } from 'react-native-modalize';
-import useServicesViewModel from '../../Screens/Services/View.model';
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Modalize } from "react-native-modalize";
+import useServicesViewModel from "../../Screens/Services/View.controller";
 
-import { styles } from './styles';
+import { styles } from "./styles";
 
-interface IServiceDetailsProps{
+interface IServiceDetailsProps {
   id: string;
   title: string;
   img: string;
@@ -20,38 +14,34 @@ interface IServiceDetailsProps{
   price: number;
 }
 
-interface IProps{
+interface IProps {
   data: IServiceDetailsProps;
 }
 
-export function ServiceDetailsCard({data}:IProps){
-  const {handleServiceDetailsCard} = useServicesViewModel()  
+export function ServiceDetailsCard({ data }: IProps) {
+  const { handleDetailedServicesCard } = useServicesViewModel();
 
   return (
     <>
-    <ScrollView
-    nestedScrollEnabled={true}
-    showsVerticalScrollIndicator={false}
-    >
+      <ScrollView
+        nestedScrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+      >
+        <TouchableOpacity
+          onPress={() => handleDetailedServicesCard(data.title)}
+          style={styles.container}
+        >
+          <View style={styles.viewDesc}>
+            <Text style={styles.title}>{data.title}</Text>
+            <Text style={styles.duration}>{data.duration} min</Text>
+            <Text style={styles.price}>$ {data.price}</Text>
+          </View>
 
-    <TouchableOpacity
-    onPress={() => handleServiceDetailsCard(data.title)}
-    style={styles.container}>
-        <View style={styles.viewDesc}>
-          <Text style={styles.title}>{data.title}</Text>
-          <Text style={styles.duration}>{data.duration} min</Text>
-          <Text style={styles.price}>$ {data.price}</Text>
-        </View>
-        
-        <View style={styles.viewImg}>
-        <Image
-        style={styles.image}
-        source={{uri: `${data.img}`}}/>
-        </View>
-      </TouchableOpacity> 
-
-    </ScrollView>
-      
+          <View style={styles.viewImg}>
+            <Image style={styles.image} source={{ uri: `${data.img}` }} />
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
     </>
   );
 }

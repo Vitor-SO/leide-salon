@@ -3,31 +3,39 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 15
+    justifyContent: 'space-between',
+    marginBottom: 15,
   },
-  imageService:{
+  leftView:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  img:{
     width: 60,
     height: 60,
-    borderRadius: 7
+    borderRadius: 7,
   },
   describeView: {
-    flexDirection: 'column'
+    flexDirection: 'column',
+    paddingLeft: 20,
   },
-  descItemsView:{
+  desc:{
     flexDirection: 'row',
   },
   title:{
     fontSize: THEME.FONT_SIZE.MD,
     fontFamily: THEME.FONT_FAMILY.BOLD
   },
-  descItems:{
+  items:{
     fontSize: THEME.FONT_SIZE.SM,
     fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
     opacity: 0.6,
     marginRight: 10
   },
- 
+  removeItemIcon: {
+    alignSelf: 'flex-end',
+    paddingBottom: 20,
+  }
+
 });

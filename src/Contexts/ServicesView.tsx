@@ -1,82 +1,86 @@
-import React, {createContext,useState} from 'react';
-import { IServicesView, IServicesViewProps, serviceDetails } from '../Screens/Services/model';
+import React, { createContext, useState } from "react";
+import {
+  IServicesView,
+  IServicesViewProps,
+  detailedServices,
+  defaultServicesCard,
+} from "../Screens/Services/model";
+import useServicesViewModel from "../Screens/Services/View.model";
 
-export const ServicesViewContext = createContext({} as IServicesView)
+export const ServicesViewContext = createContext({} as IServicesView);
 
-function ServicesViewProvider({children}:any){
-  const [titleSection, setTitleSection] = useState<string>('Cabelo');
-  const [newDetailsCard, setNewDetailsCard] = useState<IServicesViewProps[]>(
-    [
-      {
-        id: '1',
-        type: 'Corte de Cabelo',
-        title: 'Chandelier layers',
-        img: 'https://media.glamour.com/photos/626996390aca11e120fa967a/1:1/w_1439,h_1439,c_limit/Curtain%20Bangs.png',
-        desc:
-     `Chandelier layers are dramatic, bouncy, curly bangs and general layers that typically come with a deep side part. You may also see them described as “curtain bangs,” although curtain bangs are more likely to be a middle part that frames your face equally.`,
-        duration: '15-20',
-        price: 50
-      },
-      {
-        id: '2',
-        type: 'Corte de Cabelo',
-        title: 'Strong bob',
-        img: 'https://i.pinimg.com/originals/23/95/e4/2395e4453280f082e107fce3a3ec52f2.jpg',
-        desc: 
-    `This particular cut is made at jaw-level on both sides of the face.
-     Even though the cut itself is sometimes easier to see on straight hair due to its razor-sharp edge, it can be sported by curly haired people, too.
-      Hair density is the key to rocking the strong bob.`,
-        duration: '20-25',
-        price: 50
-      },
-    ]
-  )
-  
-  const [modalService,setModalService] = useState<IServicesViewProps[]>([])
-  const [modalVisible, setModalVisible] = useState<boolean>(false)
-  
+function ServicesViewProvider({ children }: any) {
+  const [titleSection, setTitleSection] = useState<string>("Corte de Cabelo");
+  const [modalService, setModalService] = useState<IServicesViewProps[]>([]);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [newDetailedServices, setNewDetailedServices] =
+    useState<IServicesViewProps[]>(defaultServicesCard);
+  const [detailedServices, setDetailedServices] =
+    useState<IServicesViewProps[]>();
 
-  function handleServiceList(title: string){
-    
-    
-    if(title){
-      setTitleSection(title)
-      const data = serviceDetails.filter(service => service.type === title)
-      setNewDetailsCard(data)
-    }
-    
-    return
+  const { GetServices } = useServicesViewModel();
+
+  function DataServices() {
+    const firebaseData = GetServices();
+
+    setDetailedServices(firebaseData as IServicesViewProps[]);
+
+    const initialDataForCards = firebaseData?.filter((service) => {
+      const data = service as IServicesViewProps;
+
+      return data.type === "Corte de Cabelo";
+    });
+
+    setNewDetailedServices(initialDataForCards as IServicesViewProps[]);
   }
 
-
-  function handleServiceDetailsCard(title: string){
-    if(title && newDetailsCard.length === 0){
-      const data = serviceDetails.filter(service => service.title === title)
-      setModalService(data)
+  function handleServiceList(title: string) {
+    if (title) {
+      setTitleSection(title);
+      const data = detailedServices?.filter(
+        (service) => service.type === title
+      );
+      setNewDetailedServices(data as IServicesViewProps[]);
     }
-    
-    const data = newDetailsCard.filter(service => service.title === title)
-    
+    return;
+  }
 
+  function handleDetailedServicesCard(title: string) {
+    if (title && newDetailedServices.length === 0) {
+      const data = detailedServices?.filter(
+        (service) => service.title === title
+      );
+      setModalService(data as IServicesViewProps[]);
+    }
 
-    setModalService(data)
-    
-    if(!modalVisible){
-      setModalVisible(true)
+    const data = newDetailedServices.filter(
+      (service) => service.title === title
+    );
+
+    setModalService(data);
+
+    if (!modalVisible) {
+      setModalVisible(true);
     }
   }
 
- 
-
-  return(
-    <ServicesViewContext.Provider 
-    value={{titleSection,setTitleSection,newDetailsCard,
-     handleServiceList,handleServiceDetailsCard,modalService,
-     modalVisible,setModalVisible}}>
+  return (
+    <ServicesViewContext.Provider
+      value={{
+        titleSection,
+        setTitleSection,
+        newDetailedServices,
+        handleServiceList,
+        handleDetailedServicesCard,
+        modalService,
+        modalVisible,
+        setModalVisible,
+        DataServices,
+      }}
+    >
       {children}
     </ServicesViewContext.Provider>
-  )
+  );
 }
 
-
-export default ServicesViewProvider
+export default ServicesViewProvider;

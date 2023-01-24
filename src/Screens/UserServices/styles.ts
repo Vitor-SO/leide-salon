@@ -41,11 +41,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  modalizeImage:{
-    flex: 1,
+  imgContainer: {
     width: '100%',
     height: 220,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 5
+  },
+  modalizeImage:{
     borderRadius: 15,
+    width: '100%',
+    height: 220,
   },
   closeIcon:{
     alignSelf: 'flex-end',
@@ -106,17 +112,10 @@ export const styles = StyleSheet.create({
   serviceDetailsContainer:{
     marginTop: 20
   },
-  backContainer: {
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-  },
-  arrow:{
-    paddingTop: 25,
-    paddingLeft: 20,
-    marginRight: 10,
+  viewButton:{
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 15,
+    marginBottom: 50,
   }
-
 });

@@ -9,34 +9,49 @@ import {
 
 import { styles } from './styles';
 import { AntDesign } from '@expo/vector-icons'
+import useUserService from '../../Screens/UserServices/View.model';
 
 interface IHeadingServiceCardProps{
-  imgURL: string;
+  id?: string;
+  type: string;
   title: string;
+  imgURL: string;
+  desc?: string;
+  duration?: number;
   price: number;
-  service: string;
 }
 
 interface IProps extends TouchableOpacityProps{
   data: IHeadingServiceCardProps;
 }
+
 export default function HomeUserServicesCard({data,...rest}:IProps){
+  const {toPage} = useUserService()
+
   return (
-    <TouchableOpacity style={styles.container} {...rest}>
-    <Image source={{uri: data.imgURL}} style={styles.imageService}/>
+    <View style={styles.container}>
+        <TouchableOpacity style={styles.leftView} {...rest}
+          onPress={() => toPage(data)}
+        >
+        <Image source={{uri: data.imgURL}} style={styles.img}/>
 
-    <View style={styles.describeView}>
-    <Text style={styles.title}>{data.title}</Text>
-      
-      <View style={styles.descItemsView}>
-      <Text style={styles.descItems}>${data.price}</Text>
-      <Text style={styles.descItems}>{`\u2022`}</Text>
-      <Text style={styles.descItems}>{data.service}</Text>
-      </View>
+        <View style={styles.describeView}>
+        <Text style={styles.title}>{data.title}</Text>
+          
+          <View style={styles.desc}>
+          <Text style={styles.items}>${data.price}</Text>
+          <Text style={styles.items}>{`\u2022`}</Text>
+          <Text style={styles.items}>{data.type}</Text>
+          </View>
 
+        </View>
+
+        
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.removeItemIcon}>
+          <AntDesign  name="minuscircleo" size={40} color="red" />
+        </TouchableOpacity>
     </View>
-
-    <AntDesign name="minuscircleo" size={40} color="red" />
-  </TouchableOpacity>
   );
 }

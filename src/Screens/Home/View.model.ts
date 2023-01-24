@@ -1,7 +1,7 @@
 import {useNavigation} from "@react-navigation/native"
 import { HeadingServicesHomeList,UserServiceOrderList } from './model';
 
-const useHomeViewModel = () =>{
+const useHomeViewModel:any = () =>{
   const navigation = useNavigation()
 
   function CardNavigation(title:string){
@@ -17,6 +17,7 @@ const useHomeViewModel = () =>{
   function ButtonNavigation(){
     navigation.navigate("services",{title: 'Corte de Cabelo'})
   }
+
   return{
     CardNavigation,ButtonNavigation,HeadingServicesHomeList,UserServiceOrderList
   }
