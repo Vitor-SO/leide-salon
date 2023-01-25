@@ -148,6 +148,7 @@ function ServiceOrders() {
           onSelect={(selectedItem, index) => {
             People(selectedItem);
           }}
+          onChangeSearchInputText={() => {}}
           buttonTextAfterSelection={(selectedItem, index) => {
             // text represented after item is selected
             // if data array is an array of objects then return selectedItem.property to render after item is selected
