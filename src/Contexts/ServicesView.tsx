@@ -2,7 +2,6 @@ import React, { createContext, useState } from "react";
 import {
   IServicesView,
   IServicesViewProps,
-  detailedServices,
   defaultServicesCard,
 } from "../Screens/Services/model";
 import useServicesViewModel from "../Screens/Services/View.model";
@@ -13,10 +12,13 @@ function ServicesViewProvider({ children }: any) {
   const [titleSection, setTitleSection] = useState<string>("Corte de Cabelo");
   const [modalService, setModalService] = useState<IServicesViewProps[]>([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const [newDetailedServices, setNewDetailedServices] =
-    useState<IServicesViewProps[]>(defaultServicesCard);
-  const [detailedServices, setDetailedServices] =
-    useState<IServicesViewProps[]>();
+
+  const [newDetailedServices, setNewDetailedServices] = useState<
+    IServicesViewProps[]
+  >([]);
+  const [detailedServices, setDetailedServices] = useState<
+    IServicesViewProps[]
+  >([]);
 
   const { GetServices } = useServicesViewModel();
 
@@ -37,9 +39,18 @@ function ServicesViewProvider({ children }: any) {
   function handleServiceList(title: string) {
     if (title) {
       setTitleSection(title);
-      const data = detailedServices?.filter(
-        (service) => service.type === title
-      );
+      const data = detailedServices?.filter((service) => {
+        if (
+          service.title.indexOf(title) > -1 ||
+          service.type.indexOf(title) > -1
+        ) {
+          console.log(service.title.indexOf(title));
+
+          return true;
+        } else {
+          return false;
+        }
+      });
       setNewDetailedServices(data as IServicesViewProps[]);
     }
     return;
@@ -69,7 +80,9 @@ function ServicesViewProvider({ children }: any) {
       value={{
         titleSection,
         setTitleSection,
+        detailedServices,
         newDetailedServices,
+        setNewDetailedServices,
         handleServiceList,
         handleDetailedServicesCard,
         modalService,

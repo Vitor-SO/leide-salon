@@ -10,8 +10,8 @@ const firebaseConfig = {
   messagingSenderId: process.env.MESSAGING_SENDERID,
   appId: process.env.APPID
 };
-  
 
+  
 const app = initializeApp(firebaseConfig)
  
 const db  = getDatabase(app);

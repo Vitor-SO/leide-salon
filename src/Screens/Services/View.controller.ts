@@ -5,11 +5,10 @@ import { servicesList, detailedServices, IServicesViewProps } from './model';
 
 const useServicesViewController = () =>{
   const {titleSection,setTitleSection,newDetailedServices,modalService,
-    modalVisible,setModalVisible,handleDetailedServicesCard,handleServiceList, DataServices} = useContext(ServicesViewContext);
+    modalVisible,setModalVisible,handleDetailedServicesCard,handleServiceList, DataServices, detailedServices,setNewDetailedServices} = useContext(ServicesViewContext);
   const navigation = useNavigation()
 
-  const [data,setData] = useState<IServicesViewProps[]>([])
-  const [searchData,setSearchData] = useState<IServicesViewProps[]>([])
+  const [searchText,setSearchText] = useState<string>('')
 
   function Navigation(){
     navigation.navigate("serviceOrders",{isSpecific: false})
@@ -26,25 +25,7 @@ const useServicesViewController = () =>{
   }
 
   
-  function Search(text: string):void{
-    
-    if(text){
-    setData(detailedServices)
-    setTitleSection(text)
-    const newData = data.filter(item => {
-      const itemData = item.type ? item.type.toUpperCase() : "".toUpperCase();
-      const textData = text.toUpperCase();
-      return itemData.indexOf(textData) > -1;
-    })
 
-    
-    setSearchData(newData)
-   }else{
-    setSearchData(data)
-    setTitleSection("Corte de Cabelo")
-   }
-    
-  }
   
   return{
     titleSection,
@@ -59,8 +40,9 @@ const useServicesViewController = () =>{
     handleServiceList,
     Navigation,
     back,
-    Search,
-    searchData,
+    searchText,
+    setSearchText,
+    setNewDetailedServices,
     GetData
   }
 }

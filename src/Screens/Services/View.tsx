@@ -22,20 +22,23 @@ import { useRoute } from "@react-navigation/native";
 import { ServicesParams } from "../../@types/navigation";
 import { Entypo } from "@expo/vector-icons";
 import useServicesViewController from "./View.controller";
+import { detailedServices } from "./model";
 
 export function Services() {
   const {
     titleSection,
+    setTitleSection,
     servicesList,
-    newDetailedServices,
     modalVisible,
     setModalVisible,
     modalService,
     Navigation,
     handleServiceList,
     back,
-    Search,
-    searchData,
+    searchText,
+    setSearchText,
+    setNewDetailedServices,
+    newDetailedServices,
     GetData,
   } = useServicesViewController();
   const modalizeRef = useRef<Modalize>(null);
@@ -58,6 +61,14 @@ export function Services() {
     }
   }, [servicesParams]);
 
+  useEffect(() => {
+    if (searchText === "") {
+      handleServiceList("Corte de Cabelo");
+    } else {
+      handleServiceList(searchText);
+    }
+  }, [searchText]);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.backContainer}>
@@ -75,7 +86,8 @@ export function Services() {
         <TextInput
           style={styles.search}
           placeholder="Buscar   🔍"
-          onChangeText={(txt) => Search(txt)}
+          value={searchText}
+          onChangeText={(txt) => setSearchText(txt)}
         />
       </View>
 
@@ -101,7 +113,7 @@ export function Services() {
           renderItem={({ item }) => <ServiceDetailsCard data={item} />}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingLeft: 20 }}
-          initialNumToRender={2}
+          initialNumToRender={3}
           ListEmptyComponent={() => <Text>Sem serviços desse tipo ainda.</Text>}
         />
       </View>

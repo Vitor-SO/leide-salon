@@ -2,12 +2,13 @@ import { Entypo } from '@expo/vector-icons';
 
 export interface IServicesView{
   titleSection: string;
+  detailedServices: IServicesViewProps[];
   newDetailedServices: IServicesViewProps[];
   modalService: IServicesViewProps[];
   modalVisible: boolean;
   setTitleSection: React.Dispatch<React.SetStateAction<string>>;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  // setNewDetailsCard: React.Dispatch<React.SetStateAction<IServicesViewProps[]>>
+  setNewDetailedServices: React.Dispatch<React.SetStateAction<IServicesViewProps[]>>
   handleServiceList: (title: string) => void;
   handleDetailedServicesCard: (title: string) => void;
   DataServices: () => void;
