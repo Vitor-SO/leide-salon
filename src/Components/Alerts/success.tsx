@@ -8,7 +8,7 @@ import {
   VStack,
 } from "native-base";
 
-export function Success(title: string) {
+export const Success = (title: string) => {
   return (
     <Stack space={3} w="100%" maxW="400">
       <Alert w="100%" status={"success"}>
@@ -36,4 +36,4 @@ export function Success(title: string) {
       ;
     </Stack>
   );
-}
+};

@@ -1,25 +1,36 @@
-import {useNavigation} from "@react-navigation/native"
-import { HeadingServicesHomeList,UserServiceOrderList } from './model';
+import { useState } from 'react';
+import FirebaseController from "../../Services/Firebase/firebase.controller"
+import { IUserServicesContext } from './model';
 
-const useHomeViewModel:any = () =>{
-  const navigation = useNavigation()
+const useHomeViewModel = ()=>{
+  const firebase = FirebaseController();
+  
+  function GetAllServices(){
+    const path = 'specificService'
+    const path2 = 'clientOrder'
 
-  function CardNavigation(title:string){
+    
+    const specificService = firebase.read(path).map((item) => {
+      const data = item?.data as IUserServicesContext || undefined // data is undefined if the creatation dont create with data 
+      
+      return data
+    })
+    const clientOrder = firebase.read(path2).map((item) => {
+      const data = item?.data as IUserServicesContext || undefined // data is undefined if the creatation dont create with data 
+      
+      return data
+    }) 
 
-    if(title === 'Serviço Específico'){
-      navigation.navigate("serviceOrders",{isSpecific: true})
-    }else{
-      navigation.navigate('services',{title})
-    }
-
+    
+    const data = specificService.concat(clientOrder)
+  
+    return data
+    
   }
 
-  function ButtonNavigation(){
-    navigation.navigate("services",{title: 'Corte de Cabelo'})
-  }
 
-  return{
-    CardNavigation,ButtonNavigation,HeadingServicesHomeList,UserServiceOrderList
+  return {
+    GetAllServices
   }
 }
 

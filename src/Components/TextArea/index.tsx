@@ -30,6 +30,7 @@ const TextAreaComponent = ({ ...rest }) => {
       }}
       autoCompleteType={undefined}
       isRequired={true}
+      isInvalid
     />
   );
 };

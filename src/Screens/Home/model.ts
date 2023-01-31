@@ -1,3 +1,4 @@
+import { ISpecificService, IClientOrder } from './../ServiceOrders/model';
 export const HeadingServicesHomeList = [
   {
     id: '1',
@@ -55,6 +56,8 @@ export interface IUserServiceOrderList{
   price: number;
   duration: string;
 }
+
+export interface IUserServicesContext extends ISpecificService, IClientOrder{};
 
 export const UserServiceOrderList =[
   {

@@ -6,15 +6,18 @@ import useServicesOrdersViewModel from "./View.model";
 import DateFormatter from "../../helpers/date-formater";
 import TimeFormatter from "../../helpers/time-formatter";
 import { Success } from "../../Components/Alerts/success";
+import { useToast } from "native-base";
 
-function useViewController() {
+function useServiceOrdersViewController() {
   const { CreateSpecificService, CreateClientOrder } =
     useServicesOrdersViewModel();
+  const toast = useToast();
   const navigation = useNavigation();
   const [textArea, setTextArea] = useState("");
-  const [people, setPeople] = useState<number>(1);
   const [date, setDate] = useState(new Date(Date.now()));
   const [time, setTime] = useState(new Date(Date.now()));
+  const [people, setPeople] = useState<number>(1);
+  const [payment, setPayment] = useState<string>("");
   const [mode, setMode] = useState<string>();
   const [show, setShow] = useState(false);
 
@@ -51,47 +54,64 @@ function useViewController() {
     showMode("time");
   };
 
-  const back = () => {
-    navigation.goBack();
-  };
-
   const People = (qtd: number) => {
     setPeople(qtd);
   };
 
-  function SpecificService() {
+  function GoToConfirmSpecificScreen() {
     const service = {
       service: textArea,
-      user: "vitoria",
+      user: "Ana",
+      userID: "325f0ae2-e02e-4eb4-9888-dff2cfbf2c0e",
       id: "ac5704d0-a197-45f3-bed8-569a11926a4a",
       date: DateFormatter(date),
       time: TimeFormatter(time),
       people: people,
+      payment,
     };
 
     for (var [key, value] of Object.entries(service)) {
       if (value === undefined || value === null || value === "") {
-        return Alert.alert(
-          "Algo deu errado!",
-          " Por favor verifique se seus dados estão inseridos corretamente."
-        );
+        return toast.show({
+          backgroundColor: "red.400",
+          description: "Verifique se preencheu todos os dados!",
+        });
       }
+    }
 
-      try {
-        CreateSpecificService(service);
+    navigation.navigate("ConfirmSpecificService", {
+      service: textArea,
+      user: "Ana",
+      userID: "325f0ae2-e02e-4eb4-9888-dff2cfbf2c0e",
+      id: "ac5704d0-a197-45f3-bed8-569a11926a4a",
+      date: DateFormatter(date),
+      time: TimeFormatter(time),
+      people: people,
+      payment,
+    });
+  }
 
-        return Alert.alert(
-          "Serviço Agendado!",
-          " O serviço foi agendado com sucesso, não vejo a hora de te ver no salão."
-        );
-      } catch (error) {
-        console.log(error);
+  function GoToConfirmServiceScreen() {}
 
-        return Alert.alert(
-          "Algo deu errado!",
-          " Por algum motivo não conseguimos concluir seu agendamento, tente mais tarde."
-        );
-      }
+  function SpecificService() {
+    const service = {
+      service: textArea,
+      user: "Ana",
+      userID: "325f0ae2-e02e-4eb4-9888-dff2cfbf2c0e",
+      id: "ac5704d0-a197-45f3-bed8-569a11926a6b",
+      date: DateFormatter(date),
+      time: TimeFormatter(time),
+      people: people,
+      payment,
+    };
+
+    try {
+      CreateSpecificService(service);
+      navigation.navigate("ScreenConfirmation");
+    } catch (error) {
+      console.log(error);
+
+      return toast.show({ description: "An error occurred" });
     }
   }
 
@@ -136,8 +156,10 @@ function useViewController() {
     show,
     time,
     mode,
-    back,
+    setPayment,
+    GoToConfirmSpecificScreen,
+    GoToConfirmServiceScreen,
   };
 }
 
-export default useViewController;
+export default useServiceOrdersViewController;

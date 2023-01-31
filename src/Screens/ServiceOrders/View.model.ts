@@ -1,36 +1,7 @@
-import { IServiceOrdersProps } from './model';
+import { IServiceOrdersProps, ISpecificService, IClientChoose, IClientOrder } from './model';
 import { ServicesViewContext } from './../../Contexts/ServicesView';
 import { useContext,useState} from "react";
 import FirebaseController from '../../Services/Firebase/firebase.controller';
-
-interface ISpecificService{
-  id?: string;
-  user: string
-  service: string,
-  date: string,
-  time: string,
-  people: number,
-}
-
-interface IClientOrder{
-  id?: string;
-  user: string
-  userID: string;
-  serviceId: string,
-  service: string,
-  serviceType: string,
-  duration: string,
-  price: number,
-  date: string,
-  time: string,
-  people: number,
-}
-
-interface IClientChoose{
-  date: string;
-  time: string;
-  people: number;
-}
 
 const useServicesOrdersViewModel = () =>{
   const firebase = FirebaseController()
@@ -48,16 +19,17 @@ const useServicesOrdersViewModel = () =>{
 
   function CreateSpecificService(specificService: ISpecificService):void{
     const path =`specificService`
-    const data ={
-      id: specificService.id,
-      user: specificService.user,
-      service: specificService.service,
-      date: specificService.date,
-      time: specificService.time,
-      people: specificService.people,
-    }
+    // const data ={
+    //   id: specificService.id,
+    //   user: specificService.user,
+    //   userID: specificService.userID,
+    //   service: specificService.service,
+    //   date: specificService.date,
+    //   time: specificService.time,
+    //   people: specificService.people,
+    // }
     
-     firebase.create(path,data)
+     firebase.create(path,specificService)
     }
 
   function SpecificServiceByUsername(user: string){
@@ -69,7 +41,7 @@ const useServicesOrdersViewModel = () =>{
   function CreateClientOrder({date,time,people}: IClientChoose ){
     const path = 'clientOrder'
     const data: IClientOrder = {
-      user: 'vitoria',
+      user: 'Xovana',
       userID: "325f0ae2-e02e-4eb4-9888-dff2cfbf2c0e",
       serviceId: modalService[0]?.id,
       service: modalService[0]?.title,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 
 import { FlatList, Image, ScrollView, Text, View } from "react-native";
 import { Button } from "../../Components/Button/indext";
@@ -7,11 +7,19 @@ import HomeUserServicesCard from "../../Components/HomeUserServicesCard";
 import { IUserServiceOrderList } from "./model";
 
 import { styles } from "./styles";
-import useHomeViewModel from "./View.model";
+import useHomeViewController from "./view.controller";
 
 export function Home() {
-  const { ButtonNavigation, HeadingServicesHomeList, UserServiceOrderList } =
-    useHomeViewModel();
+  const {
+    ButtonNavigation,
+    HeadingServicesHomeList,
+    GetServices,
+    userServiceslist,
+  } = useHomeViewController();
+
+  useEffect(() => {
+    GetServices();
+  }, []);
 
   return (
     <ScrollView
@@ -40,13 +48,12 @@ export function Home() {
 
       <Text style={styles.textSection}>Serviços Agendados</Text>
       <View style={{ width: "100%", height: 170 }}>
-        {/* {
-          UserServiceOrderList?.filter((value: IUserServiceOrderList,idx: any)=> idx < 4)
-         } */}
-
+        {userServiceslist?.map((item, index) => (
+          <HomeUserServicesCard data={item} />
+        ))}
         {/* <FlatList
-            data={UserServiceOrderList}
-            keyExtractor={(item) => item?.id}
+            data={userServiceslist}
+            keyExtractor={(item) => item.id}
             renderItem={({item})=>(
               <HomeUserServicesCard
               data={item}

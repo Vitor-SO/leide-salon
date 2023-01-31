@@ -1,9 +1,5 @@
 import React, { createContext, useState } from "react";
-import {
-  IServicesView,
-  IServicesViewProps,
-  defaultServicesCard,
-} from "../Screens/Services/model";
+import { IServicesView, IServicesViewProps } from "../Screens/Services/model";
 import useServicesViewModel from "../Screens/Services/View.model";
 
 export const ServicesViewContext = createContext({} as IServicesView);
@@ -44,8 +40,6 @@ function ServicesViewProvider({ children }: any) {
           service.title.indexOf(title) > -1 ||
           service.type.indexOf(title) > -1
         ) {
-          console.log(service.title.indexOf(title));
-
           return true;
         } else {
           return false;

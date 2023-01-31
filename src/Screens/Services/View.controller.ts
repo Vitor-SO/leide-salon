@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { ServicesViewContext } from '../../Contexts/ServicesView';
 import { useContext, useState } from "react";
-import { servicesList, detailedServices, IServicesViewProps } from './model';
+import { servicesList } from './model';
 
 const useServicesViewController = () =>{
   const {titleSection,setTitleSection,newDetailedServices,modalService,

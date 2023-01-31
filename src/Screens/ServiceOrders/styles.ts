@@ -117,5 +117,22 @@ export const styles = StyleSheet.create({
     marginRight: 10,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  qtdTextSection:{
+    fontFamily: THEME.FONT_FAMILY.BOLD,
+    fontSize: THEME.FONT_SIZE.MD,
+    marginTop: 15,
+    alignSelf: 'flex-start'
+  },
+  paymentView:{
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    marginTop: 15,
+    paddingHorizontal: 15
+  },
+  paymentText:{
+    fontSize: THEME.FONT_SIZE.MD,
+    fontFamily: THEME.FONT_FAMILY.BOLD,
   }
 });

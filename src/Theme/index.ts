@@ -2,6 +2,8 @@ export const THEME = {
   COLORS: {
     BACKGROUND_900: '#121214',
     BACKGROUND_800: '#18181B',
+    BACKGROUND_PINK: "#FF69B4",
+    BACKGROUND_PINK_BUBBLEGUM: "#FFC1CC",
 
     TEXT: '#FFFFFF',
 
@@ -13,6 +15,7 @@ export const THEME = {
 
     PRIMARY: '#8B5CF6',
     SUCCESS: '#34D399',
+    SUCCESS2: '#4BB543',
     ALERT: '#F87171',
 
     FOOTER: ['rgba(0,0,0,0)', 'rgba(0,0,0,0.9)'],

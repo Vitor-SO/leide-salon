@@ -1,4 +1,9 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, {
+  SyntheticEvent,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from "react";
 
 import {
   FlatList,
@@ -22,12 +27,10 @@ import { useRoute } from "@react-navigation/native";
 import { ServicesParams } from "../../@types/navigation";
 import { Entypo } from "@expo/vector-icons";
 import useServicesViewController from "./View.controller";
-import { detailedServices } from "./model";
 
 export function Services() {
   const {
     titleSection,
-    setTitleSection,
     servicesList,
     modalVisible,
     setModalVisible,
@@ -37,15 +40,13 @@ export function Services() {
     back,
     searchText,
     setSearchText,
-    setNewDetailedServices,
     newDetailedServices,
     GetData,
   } = useServicesViewController();
   const modalizeRef = useRef<Modalize>(null);
   const route = useRoute();
-  const servicesParams = route.params as ServicesParams;
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     GetData();
   }, []);
 
@@ -54,12 +55,6 @@ export function Services() {
       modalizeRef.current?.open();
     }
   }, [modalVisible]);
-
-  useEffect(() => {
-    if (servicesParams != undefined) {
-      handleServiceList(servicesParams?.title);
-    }
-  }, [servicesParams]);
 
   useEffect(() => {
     if (searchText === "") {

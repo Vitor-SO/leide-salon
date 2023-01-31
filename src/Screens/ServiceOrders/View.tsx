@@ -10,12 +10,20 @@ import SelectDropdown from "react-native-select-dropdown";
 import { useRoute } from "@react-navigation/native";
 import { SpecificService } from "../../@types/navigation";
 import TextAreaComponent from "../../Components/TextArea";
-import { NativeBaseProvider, Center, Toast } from "native-base";
+import {
+  NativeBaseProvider,
+  Center,
+  CheckIcon,
+  FormControl,
+  Select,
+  WarningOutlineIcon,
+  TextArea,
+} from "native-base";
 import { format } from "date-fns";
 import { Entypo } from "@expo/vector-icons";
-import useViewController from "./viewController";
+import useServiceOrdersViewController from "./viewController";
 
-function ServiceOrders() {
+function ServiceOrders({ navigation }: any) {
   const { dataServiceOrders } = useServicesOrdersViewModel();
   const {
     setText,
@@ -28,9 +36,11 @@ function ServiceOrders() {
     showTimepicker,
     mode,
     time,
-    back,
     People,
-  } = useViewController();
+    setPayment,
+    GoToConfirmSpecificScreen,
+    GoToConfirmServiceScreen,
+  } = useServiceOrdersViewController();
   const route = useRoute();
   const specificService = route.params as SpecificService;
 
@@ -42,7 +52,7 @@ function ServiceOrders() {
             name="chevron-thin-left"
             size={24}
             color="black"
-            onPress={() => back()}
+            onPress={() => navigation.goBack()}
           />
         </View>
         <Text style={styles.textScreen}>Marcar Serviço</Text>
@@ -54,8 +64,33 @@ function ServiceOrders() {
           <View style={styles.TextAreaView}>
             <NativeBaseProvider>
               <Center flex={1} width={"95%"}>
-                <TextAreaComponent
-                  onChangeText={(text: string) => setText(text)}
+                <TextArea
+                  autoCompleteType={false}
+                  shadow={2}
+                  h={100}
+                  placeholder="Descreva o tipo de serviço especifico"
+                  w="auto"
+                  _light={{
+                    placeholderTextColor: "trueGray.800",
+                    bg: "coolGray.100",
+                    _hover: {
+                      bg: "coolGray.200",
+                    },
+                    _focus: {
+                      bg: "coolGray.200:alpha.70",
+                    },
+                  }}
+                  _dark={{
+                    bg: "coolGray.800",
+                    _hover: {
+                      bg: "coolGray.900",
+                    },
+                    _focus: {
+                      bg: "coolGray.900:alpha.70",
+                    },
+                  }}
+                  isRequired={true}
+                  onChangeText={(txt) => setText(txt)}
                 />
               </Center>
             </NativeBaseProvider>
@@ -137,7 +172,7 @@ function ServiceOrders() {
 
       <View style={styles.viewqtdPeople}>
         <View style={styles.viewqtdTextSection}>
-          <Text style={styles.textSection}>Quantidade de pessoas: </Text>
+          <Text style={styles.qtdTextSection}>Quantidade de pessoas: </Text>
         </View>
         <SelectDropdown
           buttonStyle={styles.select}
@@ -162,10 +197,41 @@ function ServiceOrders() {
         />
       </View>
 
+      <View style={styles.paymentView}>
+        <Text style={styles.paymentText}>Pagamento: </Text>
+        <Center>
+          <FormControl w="110" maxW="300" isRequired>
+            <Select
+              minWidth="100"
+              bg={"#FF69B4"}
+              accessibilityLabel="Choose Service"
+              placeholder="Dinheiro"
+              _selectedItem={{
+                bg: "#FF69B4",
+                endIcon: <CheckIcon size={5} />,
+              }}
+              onValueChange={(itemValue) => setPayment(itemValue)}
+            >
+              <Select.Item label="Dinheiro" value="Dinheiro" />
+              <Select.Item label="pix" value="pix" />
+            </Select>
+            <FormControl.ErrorMessage
+              leftIcon={<WarningOutlineIcon size="xs" />}
+            >
+              Por favor escolha entre os metodos de pagamento!
+            </FormControl.ErrorMessage>
+          </FormControl>
+        </Center>
+      </View>
+
       <View style={styles.buttonSubmit}>
         <Button
-          title="Criar Serviço"
-          onPress={() => Save(specificService.isSpecific)}
+          title="Continuar"
+          onPress={() =>
+            specificService.isSpecific
+              ? GoToConfirmSpecificScreen()
+              : GoToConfirmServiceScreen()
+          }
         />
       </View>
     </SafeAreaView>
