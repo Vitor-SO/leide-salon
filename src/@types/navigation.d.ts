@@ -19,6 +19,13 @@ export interface ConfirmSpecificServiceType{
       payment: string;
 }
 
+export interface ConfirmClientOrderType{
+      date: string;
+      time: string;
+      people: number;
+      payment: string;
+}
+
 export declare global{
   namespace ReactNavigation{
     interface RootParamList{
@@ -30,6 +37,7 @@ export declare global{
       serviceOrders: SpecificService;
       userServices: UserServicesType;
       ConfirmSpecificService: ConfirmSpecificServiceType;
+      ConfirmClientOrder: ConfirmClientOrderType;
       ScreenConfirmation: undefined;
     }
   }

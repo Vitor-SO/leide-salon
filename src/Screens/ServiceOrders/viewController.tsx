@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import { Alert, Platform } from "react-native";
 import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
@@ -7,6 +7,7 @@ import DateFormatter from "../../helpers/date-formater";
 import TimeFormatter from "../../helpers/time-formatter";
 import { Success } from "../../Components/Alerts/success";
 import { useToast } from "native-base";
+import { IClientOrder, ISpecificService } from "./model";
 
 function useServiceOrdersViewController() {
   const { CreateSpecificService, CreateClientOrder } =
@@ -20,6 +21,8 @@ function useServiceOrdersViewController() {
   const [payment, setPayment] = useState<string>("");
   const [mode, setMode] = useState<string>();
   const [show, setShow] = useState(false);
+  const route = useRoute();
+  const params = route.params as ISpecificService | IClientOrder;
 
   const setText = (text: string) => {
     setTextArea(text);
@@ -91,45 +94,50 @@ function useServiceOrdersViewController() {
     });
   }
 
-  function GoToConfirmServiceScreen() {}
-
-  function SpecificService() {
+  function GoToConfirmServiceScreen() {
     const service = {
-      service: textArea,
       user: "Ana",
       userID: "325f0ae2-e02e-4eb4-9888-dff2cfbf2c0e",
-      id: "ac5704d0-a197-45f3-bed8-569a11926a6b",
+      id: "ac5704d0-a197-45f3-bed8-569a11926a4a",
       date: DateFormatter(date),
       time: TimeFormatter(time),
       people: people,
       payment,
     };
 
+    for (var [key, value] of Object.entries(service)) {
+      if (value === undefined || value === null || value === "") {
+        return toast.show({
+          backgroundColor: "red.400",
+          description: "Verifique se preencheu todos os dados!",
+        });
+      }
+    }
+
+    navigation.navigate("ConfirmClientOrder", service);
+  }
+
+  function SpecificService() {
     try {
-      CreateSpecificService(service);
+      CreateSpecificService(params);
       navigation.navigate("ScreenConfirmation");
     } catch (error) {
-      console.log(error);
-
-      return toast.show({ description: "An error occurred" });
+      return toast.show({
+        description:
+          "Por algum motivo não conseguimos concluir seu agendamento.",
+      });
     }
   }
 
   function ClientOrder() {
-    const data = {
-      date: DateFormatter(date),
-      time: TimeFormatter(time),
-      people,
-    };
-
     try {
-      CreateClientOrder(data);
-      return Alert.alert("serviço agendado com sucesso!");
+      CreateClientOrder(params);
+      navigation.navigate("ScreenConfirmation");
     } catch (error) {
-      return Alert.alert(
-        "Algo deu errado!",
-        " Por algum motivo não conseguimos concluir seu agendamento, tente mais tarde."
-      );
+      return toast.show({
+        description:
+          "Por algum motivo não conseguimos concluir seu agendamento.",
+      });
     }
   }
 

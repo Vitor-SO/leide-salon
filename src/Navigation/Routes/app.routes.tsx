@@ -6,6 +6,7 @@ import Initial from "../../Screens/Initial/View";
 import Register from "../../Screens/Register/View";
 import ServiceOrders from "../../Screens/ServiceOrders/View";
 import { Services } from "../../Screens/Services/View";
+import { ConfirmClientOrder } from "../../Screens/SubScreens/ConfirmClientOrder/view";
 import { ConfirmSpecificService } from "../../Screens/SubScreens/ConfirmSpecificService/view";
 import { ScreenConfirmation } from "../../Screens/SubScreens/ScreenConfirmation/view";
 import UserServices from "../../Screens/UserServices/view";
@@ -32,6 +33,7 @@ export default function AppRoutes() {
         name="ConfirmSpecificService"
         component={ConfirmSpecificService}
       />
+      <Screen name="ConfirmClientOrder" component={ConfirmClientOrder} />
 
       <Screen name="ScreenConfirmation" component={ScreenConfirmation} />
 

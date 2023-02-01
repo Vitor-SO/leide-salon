@@ -15,6 +15,11 @@ export interface ISpecificService{
   date: string,
   time: string,
   people: number,
+  payment: string;
+  accepted?: boolean;
+  modified?: boolean;
+  modification?: string;
+
 }
 
 export interface IClientOrder{
@@ -29,6 +34,7 @@ export interface IClientOrder{
   date: string,
   time: string,
   people: number,
+  payment: string;
   accepted?: boolean;
   modified?: boolean;
   modification?: string;
@@ -38,6 +44,7 @@ export interface IClientChoose{
   date: string;
   time: string;
   people: number;
+  payment: string;
 }
 
 export const QTPeople= ['1','2','3']

@@ -19,15 +19,6 @@ const useServicesOrdersViewModel = () =>{
 
   function CreateSpecificService(specificService: ISpecificService):void{
     const path =`specificService`
-    // const data ={
-    //   id: specificService.id,
-    //   user: specificService.user,
-    //   userID: specificService.userID,
-    //   service: specificService.service,
-    //   date: specificService.date,
-    //   time: specificService.time,
-    //   people: specificService.people,
-    // }
     
      firebase.create(path,specificService)
     }
@@ -38,7 +29,7 @@ const useServicesOrdersViewModel = () =>{
      firebase.read(path)
   }
 
-  function CreateClientOrder({date,time,people}: IClientChoose ){
+  function CreateClientOrder({date,time,people,payment}: IClientChoose ){
     const path = 'clientOrder'
     const data: IClientOrder = {
       user: 'Xovana',
@@ -50,7 +41,11 @@ const useServicesOrdersViewModel = () =>{
       price: modalService[0]?.price,
       date: date,
       time: time,
-      people: people
+      people: people,
+      payment: payment,
+  accepted: false,
+  modified: false,
+  modification: '',
     }
 
     firebase.create(path,data)

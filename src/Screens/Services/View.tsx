@@ -45,7 +45,7 @@ export function Services() {
   } = useServicesViewController();
   const modalizeRef = useRef<Modalize>(null);
   const route = useRoute();
-
+  const params = route.params as ServicesParams;
   useEffect(() => {
     GetData();
   }, []);
@@ -63,6 +63,12 @@ export function Services() {
       handleServiceList(searchText);
     }
   }, [searchText]);
+
+  useEffect(() => {
+    if (params.title !== "") {
+      handleServiceList(params.title);
+    }
+  }, [params.title]);
 
   return (
     <SafeAreaView style={styles.container}>
