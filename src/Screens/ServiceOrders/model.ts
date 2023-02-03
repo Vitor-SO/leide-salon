@@ -27,6 +27,7 @@ export interface IClientOrder{
   user: string
   userID: string;
   serviceId: string,
+  img: string;
   service: string,
   serviceType: string,
   duration: string,
@@ -35,7 +36,7 @@ export interface IClientOrder{
   time: string,
   people: number,
   payment: string;
-  accepted?: boolean;
+  status?: string;
   modified?: boolean;
   modification?: string;
 }

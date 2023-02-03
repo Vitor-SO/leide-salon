@@ -35,6 +35,7 @@ const useServicesOrdersViewModel = () =>{
       user: 'Xovana',
       userID: "325f0ae2-e02e-4eb4-9888-dff2cfbf2c0e",
       serviceId: modalService[0]?.id,
+      img: modalService[0]?.img,
       service: modalService[0]?.title,
       serviceType: modalService[0]?.type,
       duration: modalService[0]?.duration,
@@ -43,7 +44,7 @@ const useServicesOrdersViewModel = () =>{
       time: time,
       people: people,
       payment: payment,
-  accepted: false,
+  status: 'Marcado',
   modified: false,
   modification: '',
     }

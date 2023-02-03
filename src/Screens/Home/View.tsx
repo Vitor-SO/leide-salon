@@ -1,10 +1,10 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import { Center, Skeleton, VStack } from "native-base";
+import React, { useEffect } from "react";
 
 import { FlatList, Image, ScrollView, Text, View } from "react-native";
 import { Button } from "../../Components/Button/indext";
 import HeadingServicesCard from "../../Components/HeadingServicesCard";
 import HomeUserServicesCard from "../../Components/HomeUserServicesCard";
-import { IUserServiceOrderList } from "./model";
 
 import { styles } from "./styles";
 import useHomeViewController from "./view.controller";
@@ -13,8 +13,8 @@ export function Home() {
   const {
     ButtonNavigation,
     HeadingServicesHomeList,
-    GetServices,
     userServiceslist,
+    GetServices,
   } = useHomeViewController();
 
   useEffect(() => {
@@ -47,29 +47,45 @@ export function Home() {
       />
 
       <Text style={styles.textSection}>Serviços Agendados</Text>
-      <View style={{ width: "100%", height: 170 }}>
-        {userServiceslist?.map((item, index) => (
-          <HomeUserServicesCard data={item} />
-        ))}
-        {/* <FlatList
-            data={userServiceslist}
-            keyExtractor={(item) => item.id}
-            renderItem={({item})=>(
-              <HomeUserServicesCard
-              data={item}
-              />
-            )}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{paddingLeft:32, paddingRight: 64} }
-            initialNumToRender={4}
-            maxToRenderPerBatch={2}
-            ListEmptyComponent={
-              <View style={styles.viewEmptyOrders}>
-                <Text style={styles.emptyOrders}>Você não agendou nenhum serviço ainda.</Text>
-              </View>
-            }
-          /> */}
-      </View>
+      <ScrollView
+        nestedScrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingLeft: 20,
+          width: "100%",
+          height: 300,
+          marginBottom: 20,
+        }}
+      >
+        {userServiceslist ? (
+          userServiceslist.map((item, idx) => (
+            <View key={idx}>
+              <HomeUserServicesCard data={item} />
+            </View>
+          ))
+        ) : (
+          <Center w="350">
+            <VStack
+              w="90%"
+              maxW="400"
+              borderWidth="1"
+              space={8}
+              overflow="hidden"
+              rounded="md"
+              _dark={{
+                borderColor: "coolGray.500",
+              }}
+              _light={{
+                borderColor: "coolGray.200",
+              }}
+            >
+              <Skeleton h="40" />
+              <Skeleton.Text px="4" />
+              <Skeleton px="4" my="4" rounded="md" startColor="primary.100" />
+            </VStack>
+          </Center>
+        )}
+      </ScrollView>
 
       <View style={styles.buttonView}>
         <Button title="Agendar Serviço" onPress={ButtonNavigation} />

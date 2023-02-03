@@ -5,20 +5,22 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: "#FFCAF6",
+    padding: 10,
     marginBottom: 15,
-  },
-  leftView:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    borderRadius: 15,
+    marginRight:15
   },
   img:{
-    width: 60,
-    height: 60,
+    width: 30,
+    height: 30,
     borderRadius: 7,
   },
   describeView: {
+    width: 200,
     flexDirection: 'column',
-    paddingLeft: 20,
+    paddingLeft: 5,
+    justifyContent: "center",
   },
   desc:{
     flexDirection: 'row',
@@ -33,9 +35,23 @@ export const styles = StyleSheet.create({
     opacity: 0.6,
     marginRight: 10
   },
-  removeItemIcon: {
-    alignSelf: 'flex-end',
-    paddingBottom: 20,
+  status:{
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+
+  },
+  details:{
+    width: 100,
+    height: 60,
+    backgroundColor: "#ffff",
+    marginRight: 15,
+    marginTop: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 25,
+  },
+  textDetails:{
+    fontWeight: "bold",
   }
 
 });

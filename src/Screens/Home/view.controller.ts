@@ -20,7 +20,9 @@ function useHomeViewController() {
   }
 
   const GetServices = () => {
-    setUserServicesList(GetAllServices() as IUserServicesContext[])
+    const data = GetAllServices() as IUserServicesContext[]
+    setUserServicesList(data)
+    
   };
 
   function ButtonNavigation() {
@@ -32,7 +34,7 @@ function useHomeViewController() {
     ButtonNavigation,
     HeadingServicesHomeList,
     GetServices,
-    userServiceslist
+    userServiceslist,
   };
 }
 

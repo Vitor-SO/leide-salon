@@ -22,14 +22,14 @@ export default function FirebaseController(){
     }
   }
 
-    function read(path:string){
+     function read(path:string){
       var data:(object | null)[] = []
-    const dbRef = ref(db, path);
+     const dbRef = ref(db, path);
       onValue(dbRef, (snapshot: DataSnapshot) => {
       snapshot.forEach(childSnapshot =>{
         const childKey = childSnapshot.key;
         const childData= childSnapshot.toJSON();
-
+        
         data.push(childData);
         
       })

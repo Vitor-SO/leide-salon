@@ -47,7 +47,7 @@ export const HeadingServicesHomeList = [
   }
 ]
 
-export interface IUserServiceOrderList{
+export type IUserServiceOrderList = [{
   id: string;
   type: string;
   title: string;
@@ -56,7 +56,7 @@ export interface IUserServiceOrderList{
   price: number;
   duration: string;
 }
-
+]
 export interface IUserServicesContext extends ISpecificService, IClientOrder{};
 
 export const UserServiceOrderList =[

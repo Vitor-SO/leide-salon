@@ -23,7 +23,7 @@ const useHomeViewModel = ()=>{
 
     
     const data = specificService.concat(clientOrder)
-  
+
     return data
     
   }
