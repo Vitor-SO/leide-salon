@@ -91,6 +91,10 @@ function useServiceOrdersViewController() {
       time: TimeFormatter(time),
       people: people,
       payment,
+      isSpecific: true,
+      status: "Em espera",
+      modified: false,
+      modification: "",
     });
   }
 

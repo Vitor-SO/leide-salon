@@ -1,3 +1,4 @@
+import { ISpecificService } from './../Screens/ServiceOrders/model';
 import { UserServicesType } from "../Screens/UserServices/model";
 
 export interface SpecificService{
@@ -17,6 +18,10 @@ export interface ConfirmSpecificServiceType{
       time: string;
       people: number;
       payment: string;
+      isSpecific: boolean;
+      status?: string;
+  modified: boolean;
+  modification: string;
 }
 
 export interface ConfirmClientOrderType{

@@ -2,9 +2,11 @@ import { IUserServicesContext } from "../Home/model";
 
 export interface UserServicesType extends IUserServicesContext {
   id?: string,
-  serviceType: string,
+  serviceId: string,
   service: string,
-  imgURL?: string,
+  serviceType: string,
+  isSpecific?: boolean;
+  img: string,
   desc?: string,
   duration: string
   price: number,

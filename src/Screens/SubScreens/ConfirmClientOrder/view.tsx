@@ -35,9 +35,14 @@ export function ConfirmClientOrder({ navigation }: any) {
         <Text numberOfLines={2} ellipsizeMode="tail" style={styles.title}>
           Descrição do serviço (resumo)
         </Text>
-        <Text>{modalService[0]?.title}</Text>
-        <Text>{modalService[0]?.duration}</Text>
-        <Text>{modalService[0]?.price}</Text>
+        <Text style={styles.title}>Nome do serviço </Text>
+        <Text style={styles.subtitle}>{modalService[0]?.title}</Text>
+
+        <Text style={styles.title}>Duração</Text>
+        <Text style={styles.subtitle}>{modalService[0]?.duration}</Text>
+
+        <Text style={styles.title}>Price</Text>
+        <Text style={styles.subtitle}>{modalService[0]?.price}</Text>
 
         <Text style={styles.title}>Data</Text>
         <Text style={styles.subtitle}>{clientOrder?.date}</Text>

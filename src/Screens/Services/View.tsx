@@ -27,7 +27,7 @@ import { useRoute } from "@react-navigation/native";
 import { ServicesParams } from "../../@types/navigation";
 import { Entypo } from "@expo/vector-icons";
 import useServicesViewController from "./View.controller";
-
+import { useBackHandler } from "native-base/lib/typescript/hooks/useKeyboardDismissable";
 export function Services() {
   const {
     titleSection,

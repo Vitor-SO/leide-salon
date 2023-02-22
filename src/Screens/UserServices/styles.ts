@@ -5,10 +5,22 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  backContainer: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    paddingHorizontal: 15
+  },
+  arrow:{
+    paddingTop: 25,
+    marginRight: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   textSection: {
     marginTop: 40,
     marginBottom: 15,
-    fontSize: THEME.FONT_SIZE.MD,
+    fontSize: THEME.FONT_SIZE.LG,
     fontFamily: THEME.FONT_FAMILY.BOLD,
     paddingLeft: 20
   },
@@ -49,7 +61,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 5
   },
   modalizeImage:{
-    borderRadius: 15,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
     width: '100%',
     height: 220,
   },
@@ -116,6 +129,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 15,
-    marginBottom: 50,
+    marginBottom: 25,
   }
 });

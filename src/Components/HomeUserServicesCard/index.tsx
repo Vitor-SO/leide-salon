@@ -12,6 +12,7 @@ import useUserService from "../../Screens/UserServices/View.model";
 import { IUserServicesContext } from "../../Screens/Home/model";
 import { useState } from "react";
 import { THEME } from "../../Theme";
+import { tags } from "react-native-svg/lib/typescript/xml";
 
 interface IHomeUserServicesCard extends IUserServicesContext {
   id?: string;
@@ -23,6 +24,7 @@ interface IHomeUserServicesCard extends IUserServicesContext {
   price: number;
   date: string;
   time: string;
+  isSpecific?: boolean;
   status?: string;
   modified?: boolean;
   modification?: string;
@@ -34,8 +36,7 @@ interface IProps extends TouchableOpacityProps {
 
 export default function HomeUserServicesCard({ data, ...rest }: IProps) {
   const { toPage } = useUserService();
-  const [statusText, setStatusText] = useState("");
-  const [color, setColor] = useState("");
+  var status = { tag: "", style: THEME.COLORS.ALERT };
 
   function fixTime() {
     const first = data.time.split(":")[0];
@@ -44,37 +45,24 @@ export default function HomeUserServicesCard({ data, ...rest }: IProps) {
     return `${first}:${second}`;
   }
 
-  const statusTags = ["Marcado", "Não marcado", "Em espera", "Remarcado"];
+  const statusTags = [
+    { tag: "Marcado", style: THEME.COLORS.SUCCESS2 },
+    { tag: "Não marcado", style: THEME.COLORS.ALERT },
+    { tag: "Em espera", style: "yellow" },
+    { tag: "Remarcado", style: "yellow" },
+  ];
 
   function Status() {
-    statusTags.filter((status) => {
-      if (status === data.status) {
-        switch (data.status) {
-          case "Marcado":
-            setColor(THEME.COLORS.SUCCESS2);
-            setStatusText(data.status);
-            break;
-          case "Não marcado":
-            setColor(THEME.COLORS.ALERT);
-            setStatusText(data.status);
-            break;
-          case "Em espera":
-            setColor("black");
-            setStatusText(data.status);
-            break;
-          case "Em espera":
-            setColor("yellow");
-            setStatusText(data.status);
-            break;
-          default:
-            setColor("red");
-            setStatusText(data.status);
-            break;
-        }
+    statusTags.filter((statusfilter) => {
+      if (statusfilter.tag === data.status) {
+        return (status = { tag: data.status, style: statusfilter.style });
+      } else {
+        return status;
       }
     });
-
-    return <Text style={[styles.items, { color }]}>{statusText}</Text>;
+    return (
+      <Text style={[styles.items, { color: status.style }]}>{status.tag}</Text>
+    );
   }
 
   return (

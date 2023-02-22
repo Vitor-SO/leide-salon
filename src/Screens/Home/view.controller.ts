@@ -10,7 +10,6 @@ function useHomeViewController() {
 
   const [userServiceslist, setUserServicesList] = useState<IUserServicesContext[]>([])
 
-
   function CardNavigation(title: string) {
     if (title === "Serviço Específico") {
       navigation.navigate("serviceOrders", { isSpecific: true });
@@ -19,11 +18,11 @@ function useHomeViewController() {
     }
   }
 
-  const GetServices = () => {
-    const data = GetAllServices() as IUserServicesContext[]
-    setUserServicesList(data)
-    
-  };
+  const GetServices = async () => {
+    await GetAllServices().then((services) => {
+        setUserServicesList(services as IUserServicesContext[])
+    }) 
+  }
 
   function ButtonNavigation() {
     navigation.navigate("services", { title: "Corte de Cabelo" });

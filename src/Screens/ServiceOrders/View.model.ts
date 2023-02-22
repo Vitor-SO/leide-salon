@@ -37,6 +37,7 @@ const useServicesOrdersViewModel = () =>{
       serviceId: modalService[0]?.id,
       img: modalService[0]?.img,
       service: modalService[0]?.title,
+      desc: modalService[0]?.desc,
       serviceType: modalService[0]?.type,
       duration: modalService[0]?.duration,
       price: modalService[0]?.price,

@@ -1,5 +1,5 @@
 import { Center, Skeleton, VStack } from "native-base";
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 
 import { FlatList, Image, ScrollView, Text, View } from "react-native";
 import { Button } from "../../Components/Button/indext";
@@ -9,15 +9,15 @@ import HomeUserServicesCard from "../../Components/HomeUserServicesCard";
 import { styles } from "./styles";
 import useHomeViewController from "./view.controller";
 
-export function Home() {
+export const Home = () => {
   const {
     ButtonNavigation,
     HeadingServicesHomeList,
-    userServiceslist,
     GetServices,
+    userServiceslist,
   } = useHomeViewController();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     GetServices();
   }, []);
 
@@ -47,49 +47,51 @@ export function Home() {
       />
 
       <Text style={styles.textSection}>Serviços Agendados</Text>
-      <ScrollView
-        nestedScrollEnabled={true}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingLeft: 20,
-          width: "100%",
-          height: 300,
-          marginBottom: 20,
-        }}
-      >
-        {userServiceslist ? (
-          userServiceslist.map((item, idx) => (
-            <View key={idx}>
-              <HomeUserServicesCard data={item} />
-            </View>
-          ))
-        ) : (
-          <Center w="350">
-            <VStack
-              w="90%"
-              maxW="400"
-              borderWidth="1"
-              space={8}
-              overflow="hidden"
-              rounded="md"
-              _dark={{
-                borderColor: "coolGray.500",
-              }}
-              _light={{
-                borderColor: "coolGray.200",
-              }}
-            >
-              <Skeleton h="40" />
-              <Skeleton.Text px="4" />
-              <Skeleton px="4" my="4" rounded="md" startColor="primary.100" />
-            </VStack>
-          </Center>
-        )}
-      </ScrollView>
+      <View style={{ height: 300 }}>
+        <ScrollView
+          nestedScrollEnabled={true}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingLeft: 20,
+            width: "100%",
+            // height: 300,
+            marginBottom: 20,
+          }}
+        >
+          {userServiceslist ? (
+            userServiceslist.map((item, idx) => (
+              <View key={idx}>
+                <HomeUserServicesCard data={item} />
+              </View>
+            ))
+          ) : (
+            <Center w="350">
+              <VStack
+                w="90%"
+                maxW="400"
+                borderWidth="1"
+                space={8}
+                overflow="hidden"
+                rounded="md"
+                _dark={{
+                  borderColor: "coolGray.500",
+                }}
+                _light={{
+                  borderColor: "coolGray.200",
+                }}
+              >
+                <Skeleton h="40" />
+                <Skeleton.Text px="4" />
+                <Skeleton px="4" my="4" rounded="md" startColor="primary.100" />
+              </VStack>
+            </Center>
+          )}
+        </ScrollView>
+      </View>
 
       <View style={styles.buttonView}>
         <Button title="Agendar Serviço" onPress={ButtonNavigation} />
       </View>
     </ScrollView>
   );
-}
+};

@@ -5,7 +5,8 @@ import { servicesList } from './model';
 
 const useServicesViewController = () =>{
   const {titleSection,setTitleSection,newDetailedServices,modalService,
-    modalVisible,setModalVisible,handleDetailedServicesCard,handleServiceList, DataServices, detailedServices,setNewDetailedServices} = useContext(ServicesViewContext);
+    modalVisible,setModalVisible,handleDetailedServicesCard,handleServiceList, DataServices,
+     detailedServices,setNewDetailedServices} = useContext(ServicesViewContext);
   const navigation = useNavigation()
 
   const [searchText,setSearchText] = useState<string>('')

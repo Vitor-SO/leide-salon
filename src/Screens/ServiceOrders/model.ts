@@ -16,7 +16,8 @@ export interface ISpecificService{
   time: string,
   people: number,
   payment: string;
-  accepted?: boolean;
+  isSpecific?: boolean;
+  status?: string;
   modified?: boolean;
   modification?: string;
 
@@ -30,6 +31,7 @@ export interface IClientOrder{
   img: string;
   service: string,
   serviceType: string,
+  desc?: string;
   duration: string,
   price: number,
   date: string,

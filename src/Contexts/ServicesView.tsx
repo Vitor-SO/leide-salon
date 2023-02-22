@@ -18,8 +18,8 @@ function ServicesViewProvider({ children }: any) {
 
   const { GetServices } = useServicesViewModel();
 
-  function DataServices() {
-    const firebaseData = GetServices();
+  async function DataServices() {
+    const firebaseData = (await GetServices()) as IServicesViewProps[];
 
     setDetailedServices(firebaseData as IServicesViewProps[]);
 
