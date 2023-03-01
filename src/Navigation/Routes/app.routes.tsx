@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ServicesViewProvider from "../../Contexts/ServicesView";
 import { Home } from "../../Screens/Home/View";
 
 import Initial from "../../Screens/Initial/View";
@@ -16,12 +15,8 @@ const { Navigator, Screen } = createNativeStackNavigator();
 export default function AppRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
-      {/* <Screen
-      name="Initial" component={Initial} 
-    />
-    <Screen
-      name="register" component={Register}
-    />  */}
+      <Screen name="Initial" component={Initial} />
+      <Screen name="register" component={Register} />
 
       <Screen name="home" component={Home} />
 

@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Alert, Platform } from "react-native";
 import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import useServicesOrdersViewModel from "./View.model";
@@ -8,10 +8,12 @@ import TimeFormatter from "../../helpers/time-formatter";
 import { Success } from "../../Components/Alerts/success";
 import { useToast } from "native-base";
 import { IClientOrder, ISpecificService } from "./model";
+import { UserLoginContext } from "../../Contexts/auth";
 
 function useServiceOrdersViewController() {
   const { CreateSpecificService, CreateClientOrder } =
     useServicesOrdersViewModel();
+  const { user } = useContext(UserLoginContext);
   const toast = useToast();
   const navigation = useNavigation();
   const [textArea, setTextArea] = useState("");
@@ -64,8 +66,8 @@ function useServiceOrdersViewController() {
   function GoToConfirmSpecificScreen() {
     const service = {
       service: textArea,
-      user: "Ana",
-      userID: "325f0ae2-e02e-4eb4-9888-dff2cfbf2c0e",
+      user: user.name,
+      userID: user.id,
       id: "ac5704d0-a197-45f3-bed8-569a11926a4a",
       date: DateFormatter(date),
       time: TimeFormatter(time),
@@ -84,8 +86,8 @@ function useServiceOrdersViewController() {
 
     navigation.navigate("ConfirmSpecificService", {
       service: textArea,
-      user: "Ana",
-      userID: "325f0ae2-e02e-4eb4-9888-dff2cfbf2c0e",
+      user: user.name,
+      userID: user.id,
       id: "ac5704d0-a197-45f3-bed8-569a11926a4a",
       date: DateFormatter(date),
       time: TimeFormatter(time),
@@ -100,8 +102,8 @@ function useServiceOrdersViewController() {
 
   function GoToConfirmServiceScreen() {
     const service = {
-      user: "Ana",
-      userID: "325f0ae2-e02e-4eb4-9888-dff2cfbf2c0e",
+      user: user.name,
+      userID: user.id,
       id: "ac5704d0-a197-45f3-bed8-569a11926a4a",
       date: DateFormatter(date),
       time: TimeFormatter(time),

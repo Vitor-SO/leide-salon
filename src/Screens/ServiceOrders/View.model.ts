@@ -2,8 +2,10 @@ import { IServiceOrdersProps, ISpecificService, IClientChoose, IClientOrder } fr
 import { ServicesViewContext } from './../../Contexts/ServicesView';
 import { useContext,useState} from "react";
 import FirebaseController from '../../Services/Firebase/firebase.controller';
+import { UserLoginContext } from '../../Contexts/auth';
 
 const useServicesOrdersViewModel = () =>{
+  const { user } = useContext(UserLoginContext);
   const firebase = FirebaseController()
   
   const {modalService} = useContext(ServicesViewContext);
@@ -32,8 +34,8 @@ const useServicesOrdersViewModel = () =>{
   function CreateClientOrder({date,time,people,payment}: IClientChoose ){
     const path = 'clientOrder'
     const data: IClientOrder = {
-      user: 'Xovana',
-      userID: "325f0ae2-e02e-4eb4-9888-dff2cfbf2c0e",
+      user: user.name,
+      userID: user.id,
       serviceId: modalService[0]?.id,
       img: modalService[0]?.img,
       service: modalService[0]?.title,
@@ -45,7 +47,7 @@ const useServicesOrdersViewModel = () =>{
       time: time,
       people: people,
       payment: payment,
-  status: 'Marcado',
+  status: 'Em espera',
   modified: false,
   modification: '',
     }

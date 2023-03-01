@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { HeadingServicesHomeList, IUserServicesContext } from "./model";
 import { useNavigation } from "@react-navigation/native";
 import useHomeViewModel from "./View.model";
+import { UserLoginContext } from '../../Contexts/auth';
 
 
 function useHomeViewController() {
+  const { user } = useContext(UserLoginContext);
   const {GetAllServices} = useHomeViewModel()
   const navigation = useNavigation();
 
@@ -34,6 +36,7 @@ function useHomeViewController() {
     HeadingServicesHomeList,
     GetServices,
     userServiceslist,
+    user
   };
 }
 

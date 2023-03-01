@@ -1,4 +1,4 @@
-import {initializeApp} from "firebase/app";
+import  {initializeApp} from "firebase/app";
 import { getDatabase,ref,set,remove,push,onValue,get,child } from "firebase/database";
 // Initialize Firebase
 const firebaseConfig = {
@@ -12,7 +12,7 @@ const firebaseConfig = {
 };
 
 
-  
+
 const app = initializeApp(firebaseConfig)
  
 const db  = getDatabase(app);

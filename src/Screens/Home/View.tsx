@@ -1,5 +1,5 @@
 import { Center, Skeleton, VStack } from "native-base";
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 
 import { FlatList, Image, ScrollView, Text, View } from "react-native";
 import { Button } from "../../Components/Button/indext";
@@ -15,6 +15,7 @@ export const Home = () => {
     HeadingServicesHomeList,
     GetServices,
     userServiceslist,
+    user,
   } = useHomeViewController();
 
   useLayoutEffect(() => {
@@ -29,11 +30,15 @@ export const Home = () => {
     >
       <View style={styles.viewUser}>
         <Image
-          source={require("../../Assets/Images/womanIcon.png")}
+          source={
+            user.picture
+              ? user.picture
+              : require("../../Assets/Images/womanIcon.png")
+          }
           style={styles.icon}
         />
 
-        <Text style={styles.name}>Usúario</Text>
+        <Text style={styles.name}>{user.name ? user.name : "Usuario"}</Text>
       </View>
 
       <Text style={styles.textSection}>Nossos Serviços</Text>
