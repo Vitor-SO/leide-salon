@@ -1,16 +1,16 @@
 import  {initializeApp} from "firebase/app";
 import { getDatabase,ref,set,remove,push,onValue,get,child } from "firebase/database";
+import {APIKEY,AUTHDOMAIN,DATABASEURL,PROJECTID,STORAGE_BUCKET,MESSAGING_SENDERID,APPID} from "@env"
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: process.env.APIKEY,
-  authDomain: process.env.AUTHDOMAIN,
-  databaseURL: process.env.DATABASEURL,
-  projectId: process.env.PROJECTID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDERID,
-  appId: process.env.APPID
+  apiKey: APIKEY,
+  authDomain: AUTHDOMAIN,
+  databaseURL: DATABASEURL,
+  projectId: PROJECTID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDERID,
+  appId: APPID
 };
-
 
 
 const app = initializeApp(firebaseConfig)

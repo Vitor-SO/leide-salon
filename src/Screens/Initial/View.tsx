@@ -12,7 +12,6 @@ export default function Initial() {
 
   useEffect(() => {
     AutoLogin();
-
     if (isAuthenticated) {
       navigation.navigate("home");
     }

@@ -9,16 +9,10 @@ import {
 import Loading from "./src/Components/Loading";
 import Routes from "./src/Navigation/Routes";
 import ServicesViewProvider from "./src/Contexts/ServicesView";
-import { View, Text } from "react-native";
 import { NativeBaseProvider } from "native-base";
-import { useContext } from "react";
-import UserLoginProvider, { UserLoginContext } from "./src/Contexts/auth";
-import AuthRoute from "./src/Navigation/Routes/auth.route";
-import { NavigationContainer } from "@react-navigation/native";
+import UserLoginProvider from "./src/Contexts/auth";
 
 export default function App() {
-  const { isAuthenticated } = useContext(UserLoginContext);
-
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_600SemiBold,
@@ -32,15 +26,9 @@ export default function App() {
       <StatusBar style="auto" />
       <NativeBaseProvider>
         <UserLoginProvider>
-          {!isAuthenticated ? (
-            <NavigationContainer>
-              {fontsLoaded ? <AuthRoute /> : <Loading />}
-            </NavigationContainer>
-          ) : (
-            <ServicesViewProvider>
-              {fontsLoaded ? <Routes /> : <Loading />}
-            </ServicesViewProvider>
-          )}
+          <ServicesViewProvider>
+            {fontsLoaded ? <Routes /> : <Loading />}
+          </ServicesViewProvider>
         </UserLoginProvider>
       </NativeBaseProvider>
     </>

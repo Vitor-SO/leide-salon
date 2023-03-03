@@ -50,7 +50,13 @@ const UserLoginProvider = ({ children }: any) => {
 
         setUser(user);
         setIsAuthenticated(true);
-        await AsyncStorage.setItem("user_aut", "authenticated");
+        await AsyncStorage.setItem(
+          "user_auth",
+          JSON.stringify({
+            status: "authenticated",
+            user,
+          })
+        );
 
         return type;
       }
@@ -60,9 +66,19 @@ const UserLoginProvider = ({ children }: any) => {
   }
 
   async function Login() {
-    const value = await AsyncStorage.getItem("user_auth");
-    if (value) {
+    const user_auth = (await AsyncStorage.getItem("user_auth")) as string;
+    const data = JSON.parse(user_auth) as { status: string; user: IUser };
+    console.log(data.user);
+
+    if (data) {
       setIsAuthenticated(true);
+      setUser({
+        id: data.user.id,
+        email: data.user.email,
+        name: data.user.name,
+        picture: data.user.picture,
+      });
+
       return;
     } else {
       return;

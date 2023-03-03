@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UserLoginContext } from '../../Contexts/auth';
 import FirebaseController from "../../Services/Firebase/firebase.controller"
 import { IUserServicesContext } from './model';
 
 const useHomeViewModel = ()=>{
   const firebase = FirebaseController();
+  const {user} = useContext(UserLoginContext)
   
   async function GetAllServices(){
     
@@ -26,7 +28,10 @@ const useHomeViewModel = ()=>{
       ...specificService.map(service => ({ ...service, source: 'specificService' }))
     ];
 
-    return mergedData
+    console.log(mergedData.filter(data => data.userID === user.id));
+    
+
+    return mergedData.filter(data => data.userID === user.id)
   }
 
 

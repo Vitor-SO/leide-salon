@@ -1,16 +1,19 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useContext, useState } from "react";
-import { Alert, Platform } from "react-native";
+import { Platform } from "react-native";
 import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import useServicesOrdersViewModel from "./View.model";
 import DateFormatter from "../../helpers/date-formater";
 import TimeFormatter from "../../helpers/time-formatter";
-import { Success } from "../../Components/Alerts/success";
 import { useToast } from "native-base";
 import { IClientOrder, ISpecificService } from "./model";
 import { UserLoginContext } from "../../Contexts/auth";
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
 
 function useServiceOrdersViewController() {
+  const uuid = uuidv4();
+
   const { CreateSpecificService, CreateClientOrder } =
     useServicesOrdersViewModel();
   const { user } = useContext(UserLoginContext);
@@ -68,7 +71,7 @@ function useServiceOrdersViewController() {
       service: textArea,
       user: user.name,
       userID: user.id,
-      id: "ac5704d0-a197-45f3-bed8-569a11926a4a",
+      id: uuid,
       date: DateFormatter(date),
       time: TimeFormatter(time),
       people: people,
@@ -85,14 +88,7 @@ function useServiceOrdersViewController() {
     }
 
     navigation.navigate("ConfirmSpecificService", {
-      service: textArea,
-      user: user.name,
-      userID: user.id,
-      id: "ac5704d0-a197-45f3-bed8-569a11926a4a",
-      date: DateFormatter(date),
-      time: TimeFormatter(time),
-      people: people,
-      payment,
+      ...service,
       isSpecific: true,
       status: "Em espera",
       modified: false,
@@ -104,7 +100,7 @@ function useServiceOrdersViewController() {
     const service = {
       user: user.name,
       userID: user.id,
-      id: "ac5704d0-a197-45f3-bed8-569a11926a4a",
+      id: uuid,
       date: DateFormatter(date),
       time: TimeFormatter(time),
       people: people,

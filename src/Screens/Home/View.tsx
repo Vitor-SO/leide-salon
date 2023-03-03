@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Center, Skeleton, VStack } from "native-base";
 import React, { useLayoutEffect } from "react";
 
@@ -38,7 +39,7 @@ export const Home = () => {
           style={styles.icon}
         />
 
-        <Text style={styles.name}>{user.name ? user.name : "Usuario"}</Text>
+        <Text style={styles.name}>{user.name ? user.name : "Usuário"}</Text>
       </View>
 
       <Text style={styles.textSection}>Nossos Serviços</Text>
