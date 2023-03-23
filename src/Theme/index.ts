@@ -15,7 +15,7 @@ export const THEME = {
 
     PRIMARY: '#8B5CF6',
     SUCCESS: '#34D399',
-    SUCCESS2: '#4BB543',
+    SUCCESS2: '#09ec27',
     ALERT: '#F87171',
 
     FOOTER: ['rgba(0,0,0,0)', 'rgba(0,0,0,0.9)'],

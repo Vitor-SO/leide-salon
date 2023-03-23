@@ -10,6 +10,7 @@ import { Button } from "native-base";
 import useServiceOrdersViewController from "../../ServiceOrders/viewController";
 import useConfirmSpecificServiceViewConstroller from "./view.controller";
 import { Success } from "../../../Components/Alerts/success";
+import { THEME } from "../../../Theme";
 
 export function ConfirmSpecificService({ navigation }: any) {
   const { teste } = useConfirmSpecificServiceViewConstroller();
@@ -52,7 +53,8 @@ export function ConfirmSpecificService({ navigation }: any) {
         <Text style={styles.subtitle}>{specificService?.payment}</Text>
 
         <Button
-          bg={"#34D399"}
+          bg={THEME.COLORS.SUCCESS2}
+          fontWeight={"bold"}
           h={60}
           mt={30}
           onPress={() => {

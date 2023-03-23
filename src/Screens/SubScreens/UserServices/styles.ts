@@ -1,4 +1,4 @@
-import { THEME } from './../../Theme/index';
+import { THEME } from '../../../Theme/index';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({

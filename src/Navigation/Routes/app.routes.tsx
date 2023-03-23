@@ -8,7 +8,7 @@ import { Services } from "../../Screens/Services/View";
 import { ConfirmClientOrder } from "../../Screens/SubScreens/ConfirmClientOrder/view";
 import { ConfirmSpecificService } from "../../Screens/SubScreens/ConfirmSpecificService/view";
 import { ScreenConfirmation } from "../../Screens/SubScreens/ScreenConfirmation/view";
-import UserServices from "../../Screens/UserServices/view";
+import UserServices from "../../Screens/SubScreens/UserServices/view";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useToast } from 'native-base';
 import { useState } from 'react';
-import { Success } from '../../Components/Alerts/success';
+import { Success } from '../../../Components/Alerts/success';
 import { UserServicesType } from './model';
 import useUserServiceModel from './View.model';
 

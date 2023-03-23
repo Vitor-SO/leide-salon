@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   title:{
-    color: THEME.COLORS.CAPTION_500,
+    color: THEME.COLORS.BACKGROUND_900,
     fontSize: THEME.FONT_SIZE.MD,
     paddingTop: 15
   },

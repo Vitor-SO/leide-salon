@@ -1,4 +1,4 @@
-import { IUserServicesContext } from "../Home/model";
+import { IUserServicesContext } from "../../Home/model";
 
 export interface UserServicesType extends IUserServicesContext {
   id?: string,

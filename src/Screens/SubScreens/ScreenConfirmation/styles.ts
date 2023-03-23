@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     height: '100%',
     alignItems: "center",
     flexDirection: "column",
-    backgroundColor: THEME.COLORS.BACKGROUND_PINK_BUBBLEGUM,
+    backgroundColor: "#FF69B4",
     opacity: 0.8,
     marginTop: 40,
     borderTopLeftRadius: 20,

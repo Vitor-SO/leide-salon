@@ -1,5 +1,5 @@
 import { ISpecificService } from './../Screens/ServiceOrders/model';
-import { UserServicesType } from "../Screens/UserServices/model";
+import { UserServicesType } from "../Screens/SubScreens/UserServices/model";
 
 export interface SpecificService{
   isSpecific: boolean;

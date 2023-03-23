@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     fontSize: THEME.FONT_SIZE.SM,
     fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
     opacity: 0.6,
-    marginRight: 10
+    marginRight: 10,
   },
   status:{
     flexDirection: 'row',
@@ -52,6 +52,13 @@ export const styles = StyleSheet.create({
   },
   textDetails:{
     fontWeight: "bold",
+  },
+  infoIcon:{
+    paddingRight: 5
+  },
+  price:{
+    color: THEME.COLORS.SUCCESS2,
+    paddingLeft: 5
   }
 
 });

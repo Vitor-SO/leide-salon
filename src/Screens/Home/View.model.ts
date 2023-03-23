@@ -8,30 +8,25 @@ const useHomeViewModel = ()=>{
   const {user} = useContext(UserLoginContext)
   
   async function GetAllServices(){
-    
+    try {
+      
     const path = 'specificService'
     const path2 = 'clientOrder'
 
-    const clientOrder = await firebase.read(path2).then((data) => {
-      return data
-    }) as IUserServicesContext[]
+    const clientOrder = await firebase.read(path2).then((data) => data) as IUserServicesContext[]
     
-
-    const specificService = await firebase.read(path).then((data) => {
-      return data
-    }) as IUserServicesContext[]
+    const specificService = await firebase.read(path).then((data) =>  data ) as IUserServicesContext[]
     
-    
-
     const mergedData = [
       ...clientOrder.map(order => ({ ...order, source: 'clientOrder' })),
       ...specificService.map(service => ({ ...service, source: 'specificService' }))
     ];
 
-    console.log(mergedData.filter(data => data.userID === user.id));
-    
-
     return mergedData.filter(data => data.userID === user.id)
+    } catch (error) {
+      console.log(error);
+      
+    }
   }
 
 

@@ -21,9 +21,9 @@ function useHomeViewController() {
   }
 
   const GetServices = async () => {
-    await GetAllServices().then((services) => {
-        setUserServicesList(services as IUserServicesContext[])
-    }) 
+    const services = await GetAllServices()
+    setUserServicesList(services as IUserServicesContext[])
+    
   }
 
   function ButtonNavigation() {

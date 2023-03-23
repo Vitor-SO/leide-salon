@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Center, Skeleton, VStack } from "native-base";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 
 import { FlatList, Image, ScrollView, Text, View } from "react-native";
 import { Button } from "../../Components/Button/indext";
@@ -19,7 +19,7 @@ export const Home = () => {
     user,
   } = useHomeViewController();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     GetServices();
   }, []);
 

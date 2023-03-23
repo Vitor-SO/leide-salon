@@ -8,7 +8,7 @@ import {
 
 import { styles } from "./styles";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
-import useUserService from "../../Screens/UserServices/View.model";
+import useUserService from "../../Screens/SubScreens/UserServices/View.model";
 import { IUserServicesContext } from "../../Screens/Home/model";
 import { useState } from "react";
 import { THEME } from "../../Theme";
@@ -48,8 +48,8 @@ export default function HomeUserServicesCard({ data, ...rest }: IProps) {
   const statusTags = [
     { tag: "Marcado", style: THEME.COLORS.SUCCESS2 },
     { tag: "Não marcado", style: THEME.COLORS.ALERT },
-    { tag: "Em espera", style: "yellow" },
-    { tag: "Remarcado", style: "yellow" },
+    { tag: "Em espera", style: "#ffcc00" },
+    { tag: "Remarcado", style: "#ffcc00" },
   ];
 
   function Status() {
@@ -77,11 +77,20 @@ export default function HomeUserServicesCard({ data, ...rest }: IProps) {
         </Text>
         <View style={styles.desc}>
           <Text style={styles.items}>
-            {data.price ? `$ ${data.price} reais` : ""}
+            {data.price ? (
+              <Text style={styles.price}>{`$ ${data.price} reais`}</Text>
+            ) : (
+              ""
+            )}
           </Text>
         </View>
         <View style={styles.status}>
-          <Ionicons name="information-circle-outline" size={24} color="black" />
+          <Ionicons
+            style={styles.infoIcon}
+            name="information-circle-outline"
+            size={24}
+            color="black"
+          />
           {Status()}
         </View>
       </View>

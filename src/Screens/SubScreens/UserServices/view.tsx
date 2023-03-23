@@ -5,10 +5,10 @@ import { Image, ImageBackground, SafeAreaView, Text, View } from "react-native";
 import { styles } from "./styles";
 import useUserService from "./View.model";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { THEME } from "../../Theme";
+import { THEME } from "../../../Theme";
 import { useRoute } from "@react-navigation/native";
 import { UserServicesType } from "./model";
-import { Button } from "../../Components/Button/indext";
+import { Button } from "../../../Components/Button/indext";
 import { Entypo } from "@expo/vector-icons";
 import useUserServiceController from "./view.controller";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
@@ -129,7 +129,7 @@ function UserServices({ navigation }: any) {
               }}
             >
               <AntDesign name="clockcircleo" size={24} color="black" />{" "}
-              {fixTime()} h
+              {fixTime()} hora(s)
             </Text>
 
             <View style={styles.line}></View>

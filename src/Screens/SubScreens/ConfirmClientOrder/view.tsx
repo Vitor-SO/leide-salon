@@ -32,9 +32,9 @@ export function ConfirmClientOrder({ navigation }: any) {
       </View>
 
       <View style={styles.viewServices}>
-        <Text numberOfLines={2} ellipsizeMode="tail" style={styles.title}>
+        {/* <Text numberOfLines={2} ellipsizeMode="tail" style={styles.title}>
           Descrição do serviço (resumo)
-        </Text>
+        </Text> */}
         <Text style={styles.title}>Nome do serviço </Text>
         <Text style={styles.subtitle}>{modalService[0]?.title}</Text>
 
@@ -42,7 +42,7 @@ export function ConfirmClientOrder({ navigation }: any) {
         <Text style={styles.subtitle}>{modalService[0]?.duration}</Text>
 
         <Text style={styles.title}>Price</Text>
-        <Text style={styles.subtitle}>{modalService[0]?.price}</Text>
+        <Text style={styles.subtitle}>$ {modalService[0]?.price}</Text>
 
         <Text style={styles.title}>Data</Text>
         <Text style={styles.subtitle}>{clientOrder?.date}</Text>
@@ -57,7 +57,8 @@ export function ConfirmClientOrder({ navigation }: any) {
         <Text style={styles.subtitle}>{clientOrder?.payment}</Text>
 
         <Button
-          bg={"#34D399"}
+          bg={"#09ec27"}
+          fontWeight={"bold"}
           h={60}
           mt={30}
           onPress={() => {

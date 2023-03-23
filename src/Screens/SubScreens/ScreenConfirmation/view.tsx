@@ -15,7 +15,7 @@ export const ScreenConfirmation = () => {
         <AntDesign
           name="checkcircle"
           size={100}
-          color={THEME.COLORS.SUCCESS2}
+          color={"#09ec27"}
           style={styles.icon}
         />
 
@@ -23,7 +23,7 @@ export const ScreenConfirmation = () => {
         <Text style={styles.text}>Estamos ansiosos pela sua presença!</Text>
 
         <Button
-          bg={THEME.COLORS.SUCCESS2}
+          bg={"#09ec27"}
           h={60}
           mt={30}
           onPress={() => navigation.navigate("home")}

@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
-import FirebaseController from '../../Services/Firebase/firebase.controller';
+import FirebaseController from '../../../Services/Firebase/firebase.controller';
 import { UserServicesType } from './model';
 
 
