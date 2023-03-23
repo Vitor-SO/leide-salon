@@ -49,6 +49,8 @@ export default function FirebaseController(){
       onValue(dbRef, (snapshot: DataSnapshot) => {
         snapshot.forEach(childSnapshot =>{
           const childData = childSnapshot.toJSON() as {data:IUserServicesContext} | IServicesViewProps[]
+          console.log("fire", childData);
+          
           if (childData) {
             allData.push((childData?.data ? childData?.data : childData));
           } else {

@@ -25,7 +25,6 @@ const useHomeViewModel = ()=>{
     return mergedData.filter(data => data.userID === user.id)
     } catch (error) {
       console.log(error);
-      
     }
   }
 
